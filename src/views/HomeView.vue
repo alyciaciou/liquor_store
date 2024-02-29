@@ -2,8 +2,9 @@
   <div class="bg-black">
     <div class="mx-auto p-6 bg-black opacity-90 text-white sticky top-0 z-10">
         <nav class="flex items-center justify-between">
-          <a class="cursor-pointer">
+          <a class="cursor-pointer flex items-center">
             <img class="w-14 h-10 object-cover" src="/wedding-1.1s-200px.png" alt="">
+            <p>Liquor Store</p>
           </a>
           <ul class="flex items-center justify-between">
             <li class="mr-2 cursor-pointer">商品列表</li>
@@ -38,16 +39,60 @@
     <main class="container mx-auto p-6 my-6 bg-[#292828f0]">
       <section class="py-8">
         <div class=" text-white text-center">
-        <h2 class="text-4xl mb-10">系列商品</h2>
+          <h2 class="text-4xl mb-10">Liquor Store</h2>
+          <p>
+            尋找美酒的最佳去處。從紅、白葡萄酒到威士忌，我們提供多樣選擇。品酒指南和專業建議，讓您品味生活的美好。讓我們一起品味生活的美好，一杯酒、一段故事。
+          </p>
+        </div>
+      </section>
 
-        <swiper :navigation="true" :modules="navigation" class="mySwiper" :slidesPerView="4" :spaceBetween="20" :style="{'--swiper-navigation-color': '#fff', '--swiper-pagination-color': '#fff','--swiper-pagination-bullet-inactive-color': '#fff', '--swiper-pagination-bullet-inactive-opacity':'0.5'}" 
-        :pagination="{ clickable: true}" :autoplay="{delay: 5000, disableOnInteraction: false}"
-        >
-          <swiper-slide v-for="item in liquorList" :key="item.type" class="bg-zinc-900 rounded-lg hover:opacity-65 cursor-pointer">
-            <img class="object-cover rounded-t-lg" :src="item.url" alt="">
-            <p class="p-2">{{item.type}}</p>
-          </swiper-slide>
-        </swiper>
+      <section class="py-8">
+        <div class=" text-white text-center">
+          <h2 class="text-4xl mb-10">系列商品</h2>
+
+          <swiper :navigation="true" :modules="navigation" class="mySwiper" :slidesPerView="4" :spaceBetween="20" :style="{'--swiper-navigation-color': '#fff', '--swiper-pagination-color': '#fff','--swiper-pagination-bullet-inactive-color': '#fff', '--swiper-pagination-bullet-inactive-opacity':'0.5'}" 
+          :pagination="{ clickable: true}" :autoplay="{delay: 5000, disableOnInteraction: false}"
+          >
+            <swiper-slide v-for="item in liquorList" :key="item.type" class="bg-zinc-900 rounded-lg hover:opacity-65 cursor-pointer">
+              <img class="object-cover rounded-t-lg" :src="item.url" alt="">
+              <p class="p-2">{{item.type}}</p>
+            </swiper-slide>
+          </swiper>
+        </div>
+      </section>
+
+      <section class="py-8">
+        <div class=" text-white text-center">
+          <h2 class="text-4xl mb-10">品酒指南</h2>
+          <ul>
+            <li>
+              觀察外觀：倒入杯中，觀察酒的色澤，從深到淺可以看出酒的年份和成熟度。傾斜杯子，觀察酒液在杯中的黏度和顏色，濃厚度和透明度可暗示著酒的口感。
+            </li>
+            <li>
+              嗅覺：輕輕搖晃杯中酒，讓酒液與空氣接觸，讓香氣釋放。用鼻子深深吸一口氣，辨識出酒中的果香、香料、木質氣息等。
+            </li>
+            <li>
+              品嘗口感：將酒慢慢品嘗，感受它在口中的質地和結構。注意酒的酸度、甜度、單寧等要素，這些將影響您的感官體驗。
+            </li>
+            <li>
+              餘韻：品嘗完後，感受酒的餘韻，它能告訴您酒的品質和層次感。
+            </li>
+            <li>
+              配對美食：最後，試著將酒與不同的美食搭配，發現它們的化學反應和互相提升的風味。
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="py-8">
+        <div class=" text-white text-center">
+          <h2 class="text-4xl mb-10">熱銷系列</h2>
+          <ul class="flex flex-col md:flex md:flex-row items-center justify-between ">
+            <li v-for="item in liquorList.slice(2,6)" :key="item.type" class="hover:opacity-65 cursor-pointer md:w-[24%] w-full mb-6">
+              <img class="object-cover rounded-t-lg h-[500px] w-full" :src="item.url" alt="">
+              <p class="p-2 bg-[#1e1d1df0] rounded-b-lg">{{item.type}}</p>
+            </li>
+          </ul>
         </div>
       </section>
 
@@ -96,13 +141,13 @@
           </ul>
         </div>
       </section>
-      
     </main>
 
     <footer class="p-6 bg-[#242424f0] text-white">
-      321
+      <div>
+        8888
+      </div>
     </footer>
-    
   </div>
 </template>
 
