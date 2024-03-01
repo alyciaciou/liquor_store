@@ -1,45 +1,23 @@
 <template>
   <div class="bg-black">
-    <div class="mx-auto p-6 bg-black opacity-90 text-white sticky top-0 z-10">
-        <nav class="flex items-center justify-between">
-          <a class="cursor-pointer flex items-center">
-            <img class="w-14 h-10 object-cover" src="/wedding-1.1s-200px.png" alt="">
-            <p>Liquor Store</p>
-          </a>
-          <ul class="flex items-center justify-between">
-            <li class="mr-2 cursor-pointer">商品列表</li>
-            <li class="mr-2 cursor-pointer">
-              <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-cart-plus w-6 h-6" viewBox="0 0 16 16">
-                <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z"/>
-                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-              </svg>
-            </li>
-            <li class="mr-2 cursor-pointer ">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-search w-5 h-5" viewBox="0 0 16 16">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-              </svg>
-            </li>
-          </ul>
-        </nav>
-      </div>
+    <NavBar/>
     <header>
-      
-      <div class="h-screen bg-cover bg-center  text-white flex flex-col items-center justify-center text-center" style="background-image: url(https://storage.googleapis.com/vue-course-api.appspot.com/liquor_store/1709103904637.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=WIWlX1Ve23%2F8FCP%2BJR1SjtxZAmbkR1%2FGY04vgllWEU1vOxmRb1J6w%2FIUhRN9z7ed%2BSBejwk%2FkPZvsMKAIDzWDN6xqvA3PPp2doF1Uywtc5y%2B1ywUyk2fDBsx8RC2sS058mWBFep1UfFW%2FtF0BLxKtZy8Bsu5fG0LEIBiEShEATVc4Ht5UVCgHUoHtz6MufZvtA5Rsp95bMt5XtSizoHPXiGjUMqaZdqxGhAIuQYMlvWaN0Qt7A%2BCplRFxwYuq%2FC%2F3y8jRm7u7D8MtY5qFrWnaW2C0InH1BegZuabrek%2F6vzYOIV9PEFxNhLlYpclp%2BlTpOCxm%2BXVuZ0OmZmxJHArfQ%3D%3D);">
+      <div class="h-screen bg-cover bg-center  text-white flex flex-col items-center justify-center text-center opacity-85" style="background-image: url(https://storage.googleapis.com/vue-course-api.appspot.com/liquor_store/1709103904637.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=WIWlX1Ve23%2F8FCP%2BJR1SjtxZAmbkR1%2FGY04vgllWEU1vOxmRb1J6w%2FIUhRN9z7ed%2BSBejwk%2FkPZvsMKAIDzWDN6xqvA3PPp2doF1Uywtc5y%2B1ywUyk2fDBsx8RC2sS058mWBFep1UfFW%2FtF0BLxKtZy8Bsu5fG0LEIBiEShEATVc4Ht5UVCgHUoHtz6MufZvtA5Rsp95bMt5XtSizoHPXiGjUMqaZdqxGhAIuQYMlvWaN0Qt7A%2BCplRFxwYuq%2FC%2F3y8jRm7u7D8MtY5qFrWnaW2C0InH1BegZuabrek%2F6vzYOIV9PEFxNhLlYpclp%2BlTpOCxm%2BXVuZ0OmZmxJHArfQ%3D%3D);">
         <div class="">
           <h1 class="text-6xl font-bold mb-4">
-            <span>品味生活</span>
-            <span>享受人生</span>
+            <p class="pr-20">品味生活</p>
+            <p class="pl-20">享受人生</p>
           </h1>
-          <a class="text-3xl border-2 p-1 rounded hover:bg-slate-100 hover:text-black cursor-pointer">前往商品頁</a>
+          <router-link to="/products" class="text-3xl border-2 p-1 rounded hover:bg-slate-100 hover:text-black cursor-pointer">前往商品頁 
+          </router-link>
         </div>
-      
       </div>
     </header>
     
-    <main class="container mx-auto p-6 my-6 bg-[#292828f0]">
+    <main class="container mx-auto p-6 md:p-24 my-6 bg-[#292828f0]">
       <section class="py-8">
         <div class=" text-white text-center">
-          <h2 class="text-4xl mb-10">Liquor Store</h2>
+          <h2 class="text-4xl mb-10 font-bold">Liquor Store</h2>
           <p>
             尋找美酒的最佳去處。從紅、白葡萄酒到威士忌，我們提供多樣選擇。品酒指南和專業建議，讓您品味生活的美好。讓我們一起品味生活的美好，一杯酒、一段故事。
           </p>
@@ -48,14 +26,17 @@
 
       <section class="py-8">
         <div class=" text-white text-center">
-          <h2 class="text-4xl mb-10">系列商品</h2>
+          <h2 class="text-4xl mb-10 font-bold">系列商品</h2>
 
           <swiper :navigation="true" :modules="navigation" class="mySwiper" :slidesPerView="4" :spaceBetween="20" :style="{'--swiper-navigation-color': '#fff', '--swiper-pagination-color': '#fff','--swiper-pagination-bullet-inactive-color': '#fff', '--swiper-pagination-bullet-inactive-opacity':'0.5'}" 
           :pagination="{ clickable: true}" :autoplay="{delay: 5000, disableOnInteraction: false}"
           >
             <swiper-slide v-for="item in liquorList" :key="item.type" class="bg-zinc-900 rounded-lg hover:opacity-65 cursor-pointer">
-              <img class="object-cover rounded-t-lg" :src="item.url" alt="">
-              <p class="p-2">{{item.type}}</p>
+              <router-link to="/products">
+                <img class="object-cover rounded-t-lg" :src="item.url" alt="">
+                <p class="p-2 bg-[#535252f2] rounded-b-lg">{{item.type}}</p>
+              </router-link>
+              
             </swiper-slide>
           </swiper>
         </div>
@@ -63,7 +44,7 @@
 
       <section class="py-8">
         <div class=" text-white text-center">
-          <h2 class="text-4xl mb-10">品酒指南</h2>
+          <h2 class="text-4xl mb-10 font-bold">品酒指南</h2>
           <ul>
             <li>
               觀察外觀：倒入杯中，觀察酒的色澤，從深到淺可以看出酒的年份和成熟度。傾斜杯子，觀察酒液在杯中的黏度和顏色，濃厚度和透明度可暗示著酒的口感。
@@ -86,11 +67,14 @@
 
       <section class="py-8">
         <div class=" text-white text-center">
-          <h2 class="text-4xl mb-10">熱銷系列</h2>
+          <h2 class="text-4xl mb-10 font-bold">熱銷系列</h2>
           <ul class="flex flex-col md:flex md:flex-row items-center justify-between ">
             <li v-for="item in liquorList.slice(2,6)" :key="item.type" class="hover:opacity-65 cursor-pointer md:w-[24%] w-full mb-6">
-              <img class="object-cover rounded-t-lg h-[500px] w-full" :src="item.url" alt="">
-              <p class="p-2 bg-[#1e1d1df0] rounded-b-lg">{{item.type}}</p>
+              <router-link to="/products">
+                <img class="object-cover rounded-t-lg  w-full" :src="item.url" alt="">
+                <p class="p-2 bg-[#535252f2] rounded-b-lg">{{item.type}}</p>
+              </router-link>
+              
             </li>
           </ul>
         </div>
@@ -98,7 +82,7 @@
 
       <section class="py-8">
         <div class="text-white text-center">
-          <h2 class="text-4xl mb-10">釀造過程</h2>
+          <h2 class="text-4xl mb-10 font-bold">釀造過程</h2>
           <ul>
             <li class="flex-col items-center justify-center  md:flex md:flex-row  md:justify-between mb-6">
               <img class="h-[500px] w-full md:w-[48%] object-cover rounded-lg inline-block" src="https://images.unsplash.com/photo-1578911373434-0cb395d2cbfb?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
@@ -143,22 +127,21 @@
       </section>
     </main>
 
-    <footer class="p-6 bg-[#242424f0] text-white">
-      <div>
-        8888
-      </div>
-    </footer>
+    <FooTer/>
   </div>
 </template>
 
 <script setup>
+  //Swiper
   import { Swiper, SwiperSlide } from 'swiper/vue'
-  import 'swiper/css';
-
-  import 'swiper/css/navigation';
-  import 'swiper/css/pagination';
-
+  import 'swiper/css'
+  import 'swiper/css/navigation'
+  import 'swiper/css/pagination'
   import { Navigation, Autoplay, Pagination } from 'swiper/modules'
+
+  //components
+  import NavBar from '@/components/NavBar.vue'
+  import FooTer from '@/components/FooTer.vue'
 
   const navigation  = [Navigation, Autoplay, Pagination]
 
