@@ -1,5 +1,5 @@
 <template>
-    <footer class="p-6 bg-[#242424f0] text-white text-center">
+    <footer class="p-6 bg-black text-white text-center">
       <div class="flex items-center justify-center">
         <div class="mr-4">
           關於我們

@@ -1,8 +1,8 @@
 <template>
-  <div class="bg-black">
+  <div class="bg-[#070707f0] text-white">
     <NavBar/>
     <header>
-      <div class="h-screen bg-cover bg-center  text-white flex flex-col items-center justify-center text-center opacity-85" style="background-image: url(https://storage.googleapis.com/vue-course-api.appspot.com/liquor_store/1709103904637.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=WIWlX1Ve23%2F8FCP%2BJR1SjtxZAmbkR1%2FGY04vgllWEU1vOxmRb1J6w%2FIUhRN9z7ed%2BSBejwk%2FkPZvsMKAIDzWDN6xqvA3PPp2doF1Uywtc5y%2B1ywUyk2fDBsx8RC2sS058mWBFep1UfFW%2FtF0BLxKtZy8Bsu5fG0LEIBiEShEATVc4Ht5UVCgHUoHtz6MufZvtA5Rsp95bMt5XtSizoHPXiGjUMqaZdqxGhAIuQYMlvWaN0Qt7A%2BCplRFxwYuq%2FC%2F3y8jRm7u7D8MtY5qFrWnaW2C0InH1BegZuabrek%2F6vzYOIV9PEFxNhLlYpclp%2BlTpOCxm%2BXVuZ0OmZmxJHArfQ%3D%3D);">
+      <div class="h-screen bg-cover bg-center  flex flex-col items-center justify-center text-center opacity-85" style="background-image: url(https://storage.googleapis.com/vue-course-api.appspot.com/liquor_store/1709103904637.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=WIWlX1Ve23%2F8FCP%2BJR1SjtxZAmbkR1%2FGY04vgllWEU1vOxmRb1J6w%2FIUhRN9z7ed%2BSBejwk%2FkPZvsMKAIDzWDN6xqvA3PPp2doF1Uywtc5y%2B1ywUyk2fDBsx8RC2sS058mWBFep1UfFW%2FtF0BLxKtZy8Bsu5fG0LEIBiEShEATVc4Ht5UVCgHUoHtz6MufZvtA5Rsp95bMt5XtSizoHPXiGjUMqaZdqxGhAIuQYMlvWaN0Qt7A%2BCplRFxwYuq%2FC%2F3y8jRm7u7D8MtY5qFrWnaW2C0InH1BegZuabrek%2F6vzYOIV9PEFxNhLlYpclp%2BlTpOCxm%2BXVuZ0OmZmxJHArfQ%3D%3D);">
         <div class="">
           <h1 class="text-6xl font-bold mb-4">
             <p class="pr-20">品味生活</p>
@@ -14,9 +14,9 @@
       </div>
     </header>
     
-    <main class="container mx-auto p-6 md:p-24 my-6 bg-[#292828f0]">
+    <main class="container mx-auto p-6 md:p-24 mb-6">
       <section class="py-8">
-        <div class=" text-white text-center">
+        <div class=" text-center">
           <h2 class="text-4xl mb-10 font-bold">Liquor Store</h2>
           <p>
             尋找美酒的最佳去處。從紅、白葡萄酒到威士忌，我們提供多樣選擇。品酒指南和專業建議，讓您品味生活的美好。讓我們一起品味生活的美好，一杯酒、一段故事。
@@ -25,7 +25,7 @@
       </section>
 
       <section class="py-8">
-        <div class=" text-white text-center">
+        <div class="text-center">
           <h2 class="text-4xl mb-10 font-bold">系列商品</h2>
 
           <swiper :navigation="true" :modules="navigation" class="mySwiper" :slidesPerView="4" :spaceBetween="20" :style="{'--swiper-navigation-color': '#fff', '--swiper-pagination-color': '#fff','--swiper-pagination-bullet-inactive-color': '#fff', '--swiper-pagination-bullet-inactive-opacity':'0.5'}" 
@@ -43,7 +43,7 @@
       </section>
 
       <section class="py-8">
-        <div class=" text-white text-center">
+        <div class="text-center">
           <h2 class="text-4xl mb-10 font-bold">品酒指南</h2>
           <ul>
             <li>
@@ -66,7 +66,7 @@
       </section>
 
       <section class="py-8">
-        <div class=" text-white text-center">
+        <div class="text-center">
           <h2 class="text-4xl mb-10 font-bold">熱銷系列</h2>
           <ul class="flex flex-col md:flex md:flex-row items-center justify-between ">
             <li v-for="item in liquorList.slice(2,6)" :key="item.type" class="hover:opacity-65 cursor-pointer md:w-[24%] w-full mb-6">
@@ -81,7 +81,7 @@
       </section>
 
       <section class="py-8">
-        <div class="text-white text-center">
+        <div class="text-center">
           <h2 class="text-4xl mb-10 font-bold">釀造過程</h2>
           <ul>
             <li class="flex-col items-center justify-center  md:flex md:flex-row  md:justify-between mb-6">

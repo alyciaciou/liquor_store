@@ -1,10 +1,10 @@
 <template>
-    <div class="bg-black text-white">
+    <div class="bg-[#070707f0] text-white">
         <NavBar/>
         <!-- https://images.unsplash.com/photo-1573551565922-aec98de55802?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D -->
         <!-- https://images.unsplash.com/photo-1573551565922-aec98de55802?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D -->
         <header>
-            <div class="h-[500px] bg-cover bg-center text-white flex flex-col items-center justify-center text-center opacity-85" style="background-image: url(https://images.unsplash.com/photo-1550113711-48d525f192e6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+            <div class="h-[500px] bg-cover bg-center flex flex-col items-center justify-center text-center opacity-85" style="background-image: url(https://images.unsplash.com/photo-1550113711-48d525f192e6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
                 <div class="">
                     <p class="text-6xl font-bold mb-4">
                         品牌故事
@@ -12,47 +12,29 @@
                 </div>
             </div>
         </header>
-        <main class="container mx-auto p-6 md:p-24 my-6 bg-[#292828f0]">
+        <main class="container mx-auto p-6 md:p-24 mb-6">
             <section class="py-8">
-        <div class="text-white text-center">
-          <h2 class="text-4xl mb-10 font-bold">釀造過程</h2>
+        <div class="text-center">
           <ul>
             <li class="flex-col items-center justify-center  md:flex md:flex-row  md:justify-between mb-6">
               <img class="h-[500px] w-full md:w-[48%] object-cover rounded-lg inline-block" src="https://images.unsplash.com/photo-1573551565922-aec98de55802?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
               <div class="md:w-[48%] w-full inline-block">
-                <h4>葡萄酒陳釀</h4>
-                <ul class="text-justify ">
-                  <li>紅葡萄酒：通常是將葡萄皮和果汁一起發酵，這樣可以提取出色素和單寧，使酒具有濃郁的口感和顏色。</li>
-                  <li>白葡萄酒：通常是只用果汁發酵，不加入葡萄皮，使酒保持清澈的顏色和輕盈的口感。</li>
-                  <li>氣泡酒：通常是在發酵過程中添加二氧化碳，或者將已經發酵的酒再次進行二次發酵，使氣泡形成。</li>
-                  <li>甜酒：通常是在發酵過程中停止發酵，使酒中保留一部分的糖分，使其具有甜味。</li>
-                </ul>
+                <h4>使命</h4>
+                Liquor Store的使命是將世界各地最精彩的葡萄酒和烈酒帶給您的門前。透過精心挑選的品牌和風格多樣的產品，我們希望成為您品酒旅程的良伴，無論是探索新的口味還是深入了解酒類文化，我們都在這裡為您提供支持和專業建議。
               </div>
             </li>
             <li class="flex-col items-center justify-center  md:flex md:flex-row-reverse  md:justify-between mb-6">
               <img class="h-[500px] w-full md:w-[48%] object-cover rounded-lg inline-block" src="https://images.unsplash.com/photo-1551792727-ddecb99019d3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
               <div class="md:w-[48%] w-full inline-block">
-                <h4>木桶陳釀</h4>
-                <ul class="text-justify ">
-                  <li>酒液與木桶的互動：酒液在木桶中陳釀的過程中，會與木頭互相作用。酒液會透過木頭的微孔吸收木頭中的化合物，同時也會釋放酒液中的成分到木桶中。</li>
-                  <li>風味的提取：木桶陳釀可以讓酒液吸收木頭的香氣、焦糖、香料等成分，使得酒液更加豐富和複雜。</li>
-                  <li>氧化和蒸發：木桶是透氧的，所以酒液在陳釀過程中會與空氣接觸，進行氧化，使酒液的風味變化。同時，酒液也會透過木桶的微孔慢慢蒸發，這被稱為“天使之份”。</li>
-                </ul>
+                <h4>品質</h4>
+                Liquor Store引以為傲的不僅是產品，更是它們背後的故事和品質。Liquor Store的酒款來自世界各地最優秀的生產者。我們與這些生產者建立了緊密的合作關係，確保每一瓶酒都代表著最高的品質標準和獨特的風格。無論您是尋找一瓶特別的禮物，還是想要為自己的私人收藏添置新的寶藏，我們的產品都能滿足您的需求。
               </div>
             </li>
             <li class="flex-col items-center justify-center  md:flex md:flex-row  md:justify-between mb-6">
               <img class="h-[500px] w-full md:w-[48%] object-cover rounded-lg inline-block" src="https://images.unsplash.com/photo-1581717070062-e388aba6f27a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
               <div class="md:w-[48%] w-full inline-block">
-                <h4>不同酒款陳釀</h4>
-                <ul class="text-justify ">
-                  <li>威士忌：橡木桶陳釀是威士忌酒最重要的步驟之一，橡木桶能夠賦予威士忌酒的香氣、木質味、香料味等。</li>
-                  <li>白蘭地：陳釀在橡木桶中可以使白蘭地酒顏色變深，質地更加柔軟，並帶來橡木桶的香氣和味道。</li>
-                  <li>蘭姆：蘭姆酒通常會在木桶中陳釀一段時間，木桶的風味會讓蘭姆酒更加柔順和複雜。</li>
-                  <li>琴酒：琴酒的陳釀通常在法國橡木桶中進行，賦予琴酒獨特的木質和香料風味。</li>
-                  <li>利口酒：利口酒的陳釀可以增加甜味和香氣，通常使用橡木桶或其他香料桶進行陳釀。</li>
-                  <li>梅酒：梅酒的陳釀可以增添梅子的香氣和風味，通常使用橡木桶或陶罐進行陳釀。</li>
-                  <li>氣泡酒和香檳：氣泡酒和香檳的陳釀會在瓶內進行，使酒液與酵母和酒渣接觸，獲得更多的複雜性和風味。</li>
-                </ul>
+                <h4>承諾</h4>
+                作為您信任的選擇，Liquor Store承諾為您提供卓越的客戶服務和無與倫比的購物體驗。無論您對酒類知識的了解程度如何，我們的團隊都將竭誠為您提供支持和建議。我們也非常重視您的意見和反饋，因為這將幫助我們不斷改進，成為您的首選酒類購物平台。感謝您選擇與我們一起探索美好的葡萄酒和烈酒世界！
               </div>
             </li>
           </ul>
