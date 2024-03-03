@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const env = import.meta.env;
+const { VITE_APP_BASE_URL } = import.meta.env;
 
 const instance  = axios.create({
-    // baseURL: `${env.VITE_APP_BASE_URL}`
+    baseURL: `${VITE_APP_BASE_URL}`
 });
 
 instance.interceptors.request.use(
@@ -28,13 +28,7 @@ instance.interceptors.response.use(
                 message['status'] = "參數有誤";
                 break;
             case 401:
-                if(error.response.data.detail === "Not authenticated"){
-                    message['status'] = "未登入授權，請先登入";
-                }else if(error.response.data.detail === "Incorrect username or password"){
-                    message['status'] = "帳號或密碼有誤請重新輸入";
-                }else if(error.response.data.detail === "Could not validate credentials"){
-                    message['status'] = "您的連線已逾時，請重新登入";
-                }
+                message['status'] = "未登入授權，請先登入";
                 break;
             case 403:
                 message['status'] = "您沒有操作權限";
@@ -98,4 +92,4 @@ const PUT = async (url, data) => {
 
 
 
-export default { GET, POST, DELETE, PUT };
+export { GET, POST, DELETE, PUT };
