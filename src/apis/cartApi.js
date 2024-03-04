@@ -1,4 +1,4 @@
-import { GET, POST } from '@/apis/base';
+import { GET, POST, PUT, DELETE } from '@/apis/base';
 
 const { BASE_URL } = import.meta.env;
 const addTocart = ( data ) => {
@@ -11,4 +11,15 @@ const getCartInfo = () => {
     return res;
 };
 
-export { addTocart, getCartInfo }
+const updateCartItem = ( id, data ) => {
+    const res = PUT(`/api${BASE_URL}cart/${id}`, data);
+    return res;
+};
+
+const deleteCartItem = ( id ) => {
+    const res = DELETE(`/api${BASE_URL}cart/${id}`);
+    return res;
+};
+
+
+export { addTocart, getCartInfo, updateCartItem, deleteCartItem }

@@ -30,7 +30,21 @@ const router = createRouter({
       name: 'product',
       component: () => import('@/views/front/ProductView.vue')
     },
+    {
+      path: '/order',
+      name: 'order',
+      component: () => import('@/views/front/orderView.vue')
+    },
+    {
+      path: '/:path(.*)*',
+      name: "notFound",
+      component: () => import("@/views/front/NotFound.vue"),
+    },
   ]
+})
+
+router.afterEach((to, from) => {
+  window.scrollTo(0, 0);
 })
 
 export default router

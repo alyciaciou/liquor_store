@@ -57,7 +57,7 @@
     import { getProductInfo } from '@/apis/productApi'
     import { addTocart } from '@/apis/cartApi'
 
-    const router = useRoute()
+    const route = useRoute()
 
     const info = ref('')
     const content = ref('')
@@ -74,7 +74,7 @@
     const addProduct = async () => {
         const info = {
             data:{
-                product_id: router.params.id,
+                product_id: route.params.id,
                 qty: currentNum.value
             }
         }
@@ -90,7 +90,7 @@
 
     onMounted( async () => {
         try {
-            const res = await getProductInfo(router.params.id)
+            const res = await getProductInfo(route.params.id)
             info.value = res.product
             content.value = info.value.content.split(';')
         } catch (error) {

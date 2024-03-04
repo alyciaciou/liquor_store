@@ -43,7 +43,7 @@
                                 <router-link :to="`/product/${ item.id }`" class="border-2  p-2 rounded-lg cursor-pointer hover:bg-white hover:text-black">
                                     瞭解更多
                                 </router-link>
-                                <button @click.prevent="addToCart(item.id)" type="button" class="border-2 p-2 rounded-lg cursor-pointer hover:bg-white hover:text-black">
+                                <button @click.prevent="addProduct(item.id)" type="button" class="border-2 p-2 rounded-lg cursor-pointer hover:bg-white hover:text-black">
                                     加入購物車
                                 </button>
                             </div>
@@ -66,6 +66,7 @@
 
     //api
     import { getProducts } from '@/apis/productApi'
+    import { addTocart } from '@/apis/cartApi'
 
     import { onMounted, ref } from 'vue'
 
@@ -83,8 +84,21 @@
     ]
     const productsList = ref(null)
 
-    const addToCart = (oiu)=>{
-        console.log(oiu)
+    const addProduct = async (id)=>{
+        const info = {
+            data:{
+                product_id: id,
+                qty: 1
+            }
+        }
+        try {
+            const res = await addTocart(info) 
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
+        
+
     }
     onMounted( async () => {
         const res = await getProducts()

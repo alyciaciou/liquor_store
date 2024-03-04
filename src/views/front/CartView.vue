@@ -12,41 +12,49 @@
             </div>
         </header>
         <main class="container mx-auto p-6 md:p-24 mb-6">
-            <div class="">
-
-                <table class="border-2">
-                    <thead class="bg-[#272626e8]">
-                        <tr>
-                            <th></th>
-                            <th>品項</th>
-                            <th>單價</th>
-                            <th>數量</th>
-                            <th>小計</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-center">
-                        <tr>
-                            <td>img</td>
-                            <td>name</td>
-                            <td>65455</td>
-                            <td class="flex items-center justify-center">
-                                <div class=" w-[60%] md:w-[40%] border-2 rounded-lg mb-4 md:mb-0">
-                                    <button @click="minusNum" class="hover:bg-white hover:text-black font-extrabold text-white py-2 rounded-l-lg w-[20%] text-center" type="button">-</button>
-                                    <input v-model="currentNum" type="text" class=" text-center bg-gray-800  p-2 w-[60%]">
-                                    <button @click="addNum" class="hover:bg-white hover:text-black font-extrabold text-white py-2 rounded-r-lg w-[20%] text-center" type="button">+</button>
-                                </div>
-                            </td>
-                            <td>9877</td>
-                            <td>垃圾桶</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <table class="border-t-2 w-full">
+                <thead class="bg-[#272626e8] border-b-2 text-center">
+                    <tr>
+                        <th class="p-4"></th>
+                        <th class="p-4">品項</th>
+                        <th class="p-4">單價</th>
+                        <th class="p-4">數量</th>
+                        <th class="p-4">小計</th>
+                        <th class="p-4"></th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr class="border-b-2" v-for="(item, index) in info.carts">
+                        <td class="w-[14%]">
+                            <img :src="item.product.imageUrl" alt="">
+                        </td>
+                        <td class="w-[14%]">{{ item.product.title }}</td>
+                        <td class="w-[14%]">{{ item.product.price }}</td>
+                        <td class="">
+                            <div class="w-[80%] border-2 rounded-lg mb-4 md:mb-0">
+                                <button :disabled="item.qty === 1" @click="minusNum(item)" class="hover:bg-white hover:text-black font-extrabold text-white py-2 rounded-l-lg w-[20%] text-center" type="button">-</button>
+                                <input :value="item.qty" type="text" class=" text-center bg-gray-800  p-2 w-[60%]">
+                                <button @click="addNum(item)" class="hover:bg-white hover:text-black font-extrabold text-white py-2 rounded-r-lg w-[20%] text-center" type="button">+</button>
+                            </div>
+                        </td>
+                        <td class="w-[10%]">{{ item.total }}</td>
+                        <td @click="deleteItem(item.id)" class="w-[10%]">垃圾桶</td>
+                    </tr>
+                </tbody>
+                <tfoot class="text-right">
+                    <tr>
+                        <td colspan="6" class="p-6 text-3xl"><strong>總計：</strong>{{ info. final_total}}</td>
+                    </tr>
+                </tfoot>
+            </table>
                 
-            </div>
-
             <div class="py-8 text-center flex flex-col md:flex-row items-center justify-between">
-                <img class="object-cover w-[70%] md:w-[50%]" src="" alt="">
+                <router-link to="/products" class="border-2 p-2 rounded-lg hover:bg-white hover:text-black w-[50%] md:w-[20%] mb-4">
+                    繼續購物
+                </router-link>
+                <router-link to="/order" class="border-2 p-2 rounded-lg hover:bg-white hover:text-black w-[50%] md:w-[20%] mb-4">
+                    下一步
+                </router-link>
             </div>
         </main>
         
@@ -60,24 +68,64 @@
     import NavBar from '@/components/NavBar.vue'
     import FooTer from '@/components/FooTer.vue'
 
-    import { useRoute } from 'vue-router'
+    import { useRouter } from 'vue-router'
     import { ref, onMounted } from 'vue'
 
     //api
-    import { getCartInfo } from '@/apis/cartApi'
+    import { getCartInfo, updateCartItem, deleteCartItem } from '@/apis/cartApi'
 
-    const router = useRoute()
+    const router = useRouter()
 
     const info = ref('')
-    const content = ref('')
-    const currentNum = ref(1)
 
-    const addNum = () => {
-        currentNum.value +=1
+    const addNum = async (item) => {
+        item['qty'] +=1
+        const data = {
+            "data": {
+                "product_id": item['product_id'],
+                "qty": item['qty']
+            }
+        }
+
+        try {
+            const res = await updateCartItem(item['id'], data)
+            console.log(res)
+            const res2 = await getCartInfo()
+            info.value = res2.data
+        } catch (error) {
+            console.log(item)
+        }
     }
 
-    const minusNum = () => {
-        currentNum.value === 1 ? null : currentNum.value -=1
+    const minusNum = async (item) => {
+        item['qty'] === 1 ? null : item['qty'] -=1
+        const data = {
+            "data": {
+                "product_id": item['product_id'],
+                "qty": item['qty']
+            }
+        }
+
+        try {
+            const res = await updateCartItem(item['id'], data)
+            console.log(res)
+            const res2 = await getCartInfo()
+            info.value = res2.data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const deleteItem = async (cartId) => {
+        try {
+            const res = await deleteCartItem(cartId)
+            console.log(res)
+            const res2 = await getCartInfo()
+            info.value = res2.data
+        } catch (error) {
+            console.log(error)
+        }
+        
     }
 
 
@@ -85,8 +133,7 @@
         try {
             const res = await getCartInfo()
             console.log(res)
-            info.value = res
-            content.value = info.value.content.split(';')
+            info.value = res.data
         } catch (error) {
             console.log(error)
         }
