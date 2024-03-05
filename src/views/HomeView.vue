@@ -17,7 +17,7 @@
     <main class="container mx-auto p-6 md:p-24 mb-6">
       <section class="py-8">
         <div class=" text-center">
-          <h2 class="text-4xl mb-10 font-bold">Liquor Store</h2>
+          <h3 class="text-4xl mb-10 font-bold">Liquor Store</h3>
           <p>
             尋找美酒的最佳去處。從紅、白葡萄酒到威士忌，我們提供多樣選擇。品酒指南和專業建議，讓您品味生活的美好。讓我們一起品味生活的美好，一杯酒、一段故事。
           </p>
@@ -26,7 +26,7 @@
 
       <section class="py-8">
         <div class="text-center">
-          <h2 class="text-4xl mb-10 font-bold">系列商品</h2>
+          <h3 class="text-4xl mb-10 font-bold">系列商品</h3>
 
           <swiper :navigation="true" :modules="navigation" class="mySwiper" :slidesPerView="4" :spaceBetween="20" :style="{'--swiper-navigation-color': '#fff', '--swiper-pagination-color': '#fff','--swiper-pagination-bullet-inactive-color': '#fff', '--swiper-pagination-bullet-inactive-opacity':'0.5'}" 
           :pagination="{ clickable: true}" :autoplay="{delay: 5000, disableOnInteraction: false}"
@@ -44,7 +44,7 @@
 
       <section class="py-8">
         <div class="text-center">
-          <h2 class="text-4xl mb-10 font-bold">品酒指南</h2>
+          <h3 class="text-4xl mb-10 font-bold">品酒指南</h3>
           <ul>
             <li>
               觀察外觀：倒入杯中，觀察酒的色澤，從深到淺可以看出酒的年份和成熟度。傾斜杯子，觀察酒液在杯中的黏度和顏色，濃厚度和透明度可暗示著酒的口感。
@@ -67,7 +67,7 @@
 
       <section class="py-8">
         <div class="text-center">
-          <h2 class="text-4xl mb-10 font-bold">熱銷系列</h2>
+          <h3 class="text-4xl mb-10 font-bold">熱銷系列</h3>
           <ul class="flex flex-col md:flex md:flex-row items-center justify-between ">
             <li v-for="item in liquorList.slice(2,6)" :key="item.type" class="hover:opacity-65 cursor-pointer md:w-[24%] w-full mb-6">
               <router-link to="/products">
@@ -82,7 +82,7 @@
 
       <section class="py-8">
         <div class="text-center">
-          <h2 class="text-4xl mb-10 font-bold">釀造過程</h2>
+          <h3 class="text-4xl mb-10 font-bold">釀造過程</h3>
           <ul>
             <li class="flex-col items-center justify-center  md:flex md:flex-row  md:justify-between mb-6">
               <img class="h-[500px] w-full md:w-[48%] object-cover rounded-lg inline-block" src="https://images.unsplash.com/photo-1578911373434-0cb395d2cbfb?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">

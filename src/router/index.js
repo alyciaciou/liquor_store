@@ -36,6 +36,11 @@ const router = createRouter({
       component: () => import('@/views/front/orderView.vue')
     },
     {
+      path: '/checkout/:oderId',
+      name: 'checkout',
+      component: () => import('@/views/front/checkoutView.vue')
+    },
+    {
       path: '/:path(.*)*',
       name: "notFound",
       component: () => import("@/views/front/NotFound.vue"),
