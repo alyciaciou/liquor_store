@@ -57,6 +57,8 @@
     import { getProductInfo } from '@/apis/productApi'
     import { addTocart } from '@/apis/cartApi'
 
+    import Swal from 'sweetalert2'
+
     const route = useRoute()
 
     const info = ref('')
@@ -82,6 +84,22 @@
         try {
             const res = await addTocart(info) 
             console.log(res)
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                background:'#070707f0',
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            })
+            Toast.fire({
+                icon: "success",
+                title: "成功加入購物車"
+            })
         } catch (error) {
             console.log(error)
         }

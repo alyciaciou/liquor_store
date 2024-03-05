@@ -70,18 +70,10 @@
 
     import { onMounted, ref } from 'vue'
 
+    import Swal from 'sweetalert2'
+
     const selectType = ['威士忌', '葡萄酒', '香檳', '氣泡酒', '利口', '蘭姆', '琴酒', '白蘭地', '梅酒', ]
-    const liquorList = [
-    {type: '威士忌', url: 'https://images.unsplash.com/photo-1522877341927-e5dc72935d29?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'},
-    {type: '葡萄酒', url: 'https://images.unsplash.com/photo-1630369160812-26c7604cbd8c?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'},
-    {type: '香檳', url: 'https://images.unsplash.com/photo-1437418747212-8d9709afab22?q=80&w=1664&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'},
-    {type: '氣泡酒', url: 'https://images.unsplash.com/photo-1547595628-c61a29f496f0?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'},
-    {type: '利口', url: 'https://images.unsplash.com/photo-1520880205996-43e8ed079873?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'},
-    {type: '蘭姆', url: 'https://images.unsplash.com/photo-1514359652734-6205dd477a1e?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'},
-    {type: '琴酒', url: 'https://images.unsplash.com/photo-1578664182930-39d6469c49bf?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'},
-    {type: '白蘭地', url: 'https://images.unsplash.com/photo-1500217052183-bc01eee1a74e?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'},
-    {type: '梅酒', url: 'https://images.unsplash.com/photo-1575023782549-62ca0d244b39?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'},
-    ]
+    
     const productsList = ref(null)
 
     const addProduct = async (id)=>{
@@ -94,6 +86,21 @@
         try {
             const res = await addTocart(info) 
             console.log(res)
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            })
+            Toast.fire({
+                icon: "success",
+                title: "成功加入購物車"
+            })
         } catch (error) {
             console.log(error)
         }

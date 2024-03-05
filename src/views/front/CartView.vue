@@ -74,6 +74,8 @@
     //api
     import { getCartInfo, updateCartItem, deleteCartItem } from '@/apis/cartApi'
 
+    import Swal from 'sweetalert2'
+
     const router = useRouter()
 
     const info = ref('')
