@@ -25,11 +25,11 @@
 
                     <div class="cart-item flex flex-col md:flex-row justify-center md:justify-between items-center border-b pb-4">
                         <div class="w-[60%] md:w-[40%] border-2 rounded-lg mb-4 md:mb-0">
-                            <button @click="minusNum" class="hover:bg-white hover:text-black font-extrabold text-white py-2 rounded-l-lg w-[20%] text-center" type="button">-</button>
+                            <button @click="minusNum" class="hover:bg-white hover:text-black duration-500 font-extrabold text-white py-2 rounded-l-lg w-[20%] text-center" type="button">-</button>
                             <input v-model="currentNum" type="text" class="text-center bg-gray-800  p-2 w-[60%]">
-                            <button @click="addNum" class="hover:bg-white hover:text-black font-extrabold text-white py-2 rounded-r-lg w-[20%] text-center" type="button">+</button>
+                            <button @click="addNum" class="hover:bg-white hover:text-black duration-500 font-extrabold text-white py-2 rounded-r-lg w-[20%] text-center" type="button">+</button>
                         </div>
-                        <button @click="addProduct" type="button" class="w-[60%] md:w-[40%] item-name border-2 p-2 rounded-lg hover:bg-white hover:text-black">
+                        <button @click="addProduct" type="button" class="w-[60%] md:w-[40%] item-name border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black">
                             加入購物車
                         </button>
                     </div>

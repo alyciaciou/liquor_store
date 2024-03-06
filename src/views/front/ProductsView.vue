@@ -33,17 +33,17 @@
             <div class="py-8 text-center flex items-center justify-between w-full flex-col md:flex md:flex-row flex-wrap">
                 <div v-for="item in productsList" :key="item.id" class="md:w-[30%] lg:w-[24%] w-[80%] mb-6">
                     <router-link :to="`/product/${ item.id }`">
-                        <div class="flex flex-col items-center justify-between p-2 bg-[#272626e8] rounded-lg hover:bg-[#535252ab] hover:opacity-75 h-[380px] ">
+                        <div class="flex flex-col items-center justify-between p-2 bg-[#272626e8] rounded-lg duration-500 hover:bg-[#535252ab] hover:opacity-75 h-[380px] ">
                             <img class="object-cover rounded-lg h-[200px] " :src="item.imageUrl" alt="">
                             <div>
                                 <p class="p-1">{{item.title}}</p>
                                 <p class="p-1">售價：NT$.{{ item.price }}  <del class="text-sm ml-2">原價：NT$.{{ item.origin_price }}</del></p>
                             </div>
                             <div class="flex items-center justify-between">
-                                <router-link :to="`/product/${ item.id }`" class="border-2  p-2 rounded-lg cursor-pointer hover:bg-white hover:text-black">
+                                <router-link :to="`/product/${ item.id }`" class="border-2  p-2 rounded-lg cursor-pointer duration-500 hover:bg-white hover:text-black">
                                     瞭解更多
                                 </router-link>
-                                <button @click.prevent="addProduct(item.id)" type="button" class="border-2 p-2 rounded-lg cursor-pointer hover:bg-white hover:text-black">
+                                <button @click.prevent="addProduct(item.id)" type="button" class="border-2 p-2 rounded-lg cursor-pointer duration-500 hover:bg-white hover:text-black">
                                     加入購物車
                                 </button>
                             </div>
@@ -51,7 +51,6 @@
                     </router-link>
                 </div>
             </div>
-
         </main>
         
         <FooTer/>

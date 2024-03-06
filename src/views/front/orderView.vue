@@ -89,10 +89,10 @@
             </div>
             
             <div class="py-8 text-center flex flex-col md:flex-row items-center justify-between">
-                <router-link to="/cart" class="border-2 p-2 rounded-lg hover:bg-white hover:text-black w-[50%] md:w-[20%] mb-4">
+                <router-link to="/cart" class="border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-[50%] md:w-[20%] mb-4">
                     上一步
                 </router-link>
-                <button @click="confirmOrden" type="button" class="border-2 p-2 rounded-lg hover:bg-white hover:text-black w-[50%] md:w-[20%] mb-4">
+                <button @click="confirmOrden" type="button" class="border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-[50%] md:w-[20%] mb-4">
                     送出訂單
                 </button>
             </div>
