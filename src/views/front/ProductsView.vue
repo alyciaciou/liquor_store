@@ -113,3 +113,10 @@
     })
 </script>
 
+<style>
+    .swal2-popup{
+        position: absolute;
+        top: 12%;
+    }
+</style>
+
