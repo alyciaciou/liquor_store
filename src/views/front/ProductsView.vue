@@ -184,7 +184,7 @@
 
     }
 
-    const changePage = () =
+    // const changePage = () =
     const totalPages = ref(null)
     onMounted( async () => {
         const res = await getProducts(queryInfo.value)
