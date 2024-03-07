@@ -13,19 +13,20 @@
         </header>
         <main class="container mx-auto p-6 md:p-24 mb-6">
             <ul class="py-8 text-center flex items-center justify-between w-full">
-                <li class="w-[33%] ">
-                    <select class="bg-[#535252f2] w-[80%] md:w-[50%] p-2 rounded-lg">
-                        <option v-for="item in selectType" :key="item" :value="item">{{ item }}</option>
+                <li class="w-[30%] ">
+                    <select @change="changeType" class="bg-[#535252f2] w-[80%] md:w-[50%] p-2 rounded-lg">
+                        <option v-for="item in type" :key="item" :value="item">{{ item }}</option>
+                    </select>
+                </li>
+                <li class="w-[36%] ">
+                    <select @change="changeBrand" class="bg-[#535252f2] w-[80%] md:w-[50%] p-2 rounded-lg">
+                        <option selected value="全部">全部</option>
+                        <option v-for="item in selectType[selectedType]" :key="item" :value="item">{{ item }}</option>
                     </select>
                 </li>
                 <li class="w-[33%] ">
                     <select class="bg-[#535252f2] w-[80%] md:w-[50%] p-2 rounded-lg">
-                        <option v-for="item in selectType" :key="item" :value="item">{{ item }}</option>
-                    </select>
-                </li>
-                <li class="w-[33%] ">
-                    <select class="bg-[#535252f2] w-[80%] md:w-[50%] p-2 rounded-lg">
-                        <option v-for="item in selectType" :key="item" :value="item">{{ item }}</option>
+                        <option v-for="item in type" :key="item" :value="item">{{ item }}</option>
                     </select>
                 </li>
             </ul>
@@ -40,16 +41,46 @@
                                 <p class="p-1">售價：NT$.{{ item.price }}  <del class="text-sm ml-2">原價：NT$.{{ item.origin_price }}</del></p>
                             </div>
                             <div class="flex items-center justify-between">
-                                <router-link :to="`/product/${ item.id }`" class="border-2  p-2 rounded-lg cursor-pointer duration-500 hover:bg-white hover:text-black">
+                                <router-link :to="`/product/${ item.id }`" class="block border-2  p-2 rounded-lg cursor-pointer duration-500 hover:bg-white hover:text-black">
                                     瞭解更多
                                 </router-link>
-                                <button @click.prevent="addProduct(item.id)" type="button" class="border-2 p-2 rounded-lg cursor-pointer duration-500 hover:bg-white hover:text-black">
+                                <button @click.prevent="addProduct(item.id)" type="button" class=" border-2 p-2 rounded-lg cursor-pointer duration-500 hover:bg-white hover:text-black">
                                     加入購物車
                                 </button>
                             </div>
                         </div>
                     </router-link>
                 </div>
+            </div>
+
+            <div class="pagination">
+                <ul class="flex items-center justify-center">
+                    <li>
+                        <button @click="changePage('firstPage')" class="py-2 px-4 border-2 duration-500 hover:bg-white hover:text-black" type="button">
+                            <<
+                        </button>
+                    </li>
+                    <li>
+                        <button @click="changePage('previousPage')" class="py-2 px-4 border-2 duration-500 hover:bg-white hover:text-black" type="button">
+                            <
+                        </button>
+                    </li>
+                    <li v-for="(page, index) in totalPages" :key="index + 'page'">
+                        <button @click="changePage('firstPage', $event)" class="py-2 px-4 border-2 duration-500 hover:bg-white hover:text-black" type="button">
+                            {{ page }}
+                        </button>
+                    </li>
+                    <li>
+                        <button @click="changePage('nextPage')" class="py-2 px-4 border-2 duration-500 hover:bg-white hover:text-black" type="button">
+                            >
+                        </button>
+                    </li>
+                    <li>
+                        <button @click="changePage('lastPage')" class="py-2 px-4 border-2 duration-500 hover:bg-white hover:text-black" type="button">
+                            >>
+                        </button>
+                    </li>
+                </ul>
             </div>
         </main>
         
@@ -67,13 +98,59 @@
     import { getProducts } from '@/apis/productApi'
     import { addTocart } from '@/apis/cartApi'
 
-    import { onMounted, ref } from 'vue'
+    import { onMounted, ref, watch } from 'vue'
 
     import Swal from 'sweetalert2'
-
-    const selectType = ['威士忌', '葡萄酒', '香檳', '氣泡酒', '利口', '蘭姆', '琴酒', '白蘭地', '梅酒', ]
-    
+    const products = ref(null)
     const productsList = ref(null)
+    const selectType = {
+        '威士忌':['麥卡倫', '蘇格登', '亞伯樂'], 
+        '葡萄酒':['杜瓦樂華', '蘇格登', '亞伯樂'], 
+        '香檳':['杜瓦樂華', '保羅傑'], 
+        '氣泡酒':['米娜多', 'TOSO', '羅卡酒莊'], 
+        '利口':['安丘瑞耶斯', '吉拿', '芙內', '義大利庫司'], 
+        '蘭姆':['麥卡倫', '杜瓦樂華', '亞伯樂'], 
+        '琴酒':['杜瓦樂華', '蘇格登', '亞伯樂'], 
+        '白蘭地':['皮耶費朗', '軒尼詩', '杜瓦樂華'], 
+        '梅酒':['麥卡倫', '蘇格登', '亞伯樂'],
+    }
+    
+    const type = ['威士忌', '葡萄酒', '香檳', '氣泡酒', '利口', '蘭姆', '琴酒', '白蘭地', '梅酒' ]
+    const selectedType = ref('威士忌')
+    const queryInfo = ref(
+        {
+            page:1,
+            category:selectedType.value
+        }
+    )
+    const changeType = (e) => {
+        selectedType.value = e.target.value
+    }
+
+    const changeBrand = (e) => {
+        if(e.target.value === '全部'){
+            productsList.value = products.value
+        } else {
+            const data = products.value.filter((item)=>{
+                return item.brand === e.target.value
+            })
+            productsList.value = data
+        }
+        
+    }
+
+    watch(selectedType, async (newValue, oldValue) => {
+        queryInfo.value.category = newValue
+        try {
+            const res = await getProducts(queryInfo.value)
+            products.value = res.products
+            productsList.value = res.products
+            totalPages.value = res.pagination.total_pages
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
+    })
 
     const addProduct = async (id)=>{
         const info = {
@@ -106,9 +183,14 @@
         
 
     }
+
+    const changePage = () =
+    const totalPages = ref(null)
     onMounted( async () => {
-        const res = await getProducts()
+        const res = await getProducts(queryInfo.value)
+        products.value = res.products
         productsList.value = res.products
+        totalPages.value = res.pagination.total_pages
         console.log(res)
     })
 </script>

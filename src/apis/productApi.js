@@ -1,8 +1,8 @@
 import { GET } from '@/apis/base';
 
 const { BASE_URL } = import.meta.env;
-const getProducts = () => {
-    const res = GET(`/api${BASE_URL}products/all`);
+const getProducts = (queryInfo) => {
+    const res = GET(`/api${BASE_URL}products`, queryInfo);
     return res;
 };
 
