@@ -66,7 +66,7 @@
                         </button>
                     </li>
                     <li v-for="(page, index) in totalPages" :key="index + 'page'">
-                        <button @click="changePage('firstPage', $event)" class="py-2 px-4 border-2 duration-500 hover:bg-white hover:text-black" type="button">
+                        <button @click="changePage('currentPage', page)" class="py-2 px-4 border-2 duration-500 hover:bg-white hover:text-black" type="button">
                             {{ page }}
                         </button>
                     </li>
@@ -117,9 +117,10 @@
     
     const type = ['威士忌', '葡萄酒', '香檳', '氣泡酒', '利口', '蘭姆', '琴酒', '白蘭地', '梅酒' ]
     const selectedType = ref('威士忌')
+    const page = ref(1)
     const queryInfo = ref(
         {
-            page:1,
+            page:page.value,
             category:selectedType.value
         }
     )
@@ -139,8 +140,10 @@
         
     }
 
-    watch(selectedType, async (newValue, oldValue) => {
-        queryInfo.value.category = newValue
+    watch([selectedType, page], async ([newSelectedType, newPage]) => {
+        console.log()
+        queryInfo.value.category = newSelectedType
+        queryInfo.value.page = newPage
         try {
             const res = await getProducts(queryInfo.value)
             products.value = res.products
@@ -183,9 +186,24 @@
         
 
     }
-
-    // const changePage = () =
     const totalPages = ref(null)
+    const changePage = async (type, currentPage) => {
+        console.log(type, currentPage)
+        if(type === 'firstPage'){
+            page.value = 1
+        }else if(type === 'previousPage'){
+            page.value === 1 ? null : page.value -= 1
+        }else if(type === 'currentPage'){
+            page.value = currentPage 
+        }else if(type === 'nextPage'){
+            page.value === totalPages.value ? null : page.value += 1
+        }else if(type === 'lastPage'){
+            page.value = totalPages.value
+        }
+        console.log(page.value)
+        console.log(queryInfo.value)
+    }
+    
     onMounted( async () => {
         const res = await getProducts(queryInfo.value)
         products.value = res.products
