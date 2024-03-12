@@ -5,7 +5,7 @@
             <img class="h-16 w-16" src="/Rolling-1s-150px.gif" alt="loading">
         </div>
         <header>
-            <div class="h-[500px] bg-cover bg-center flex flex-col items-center justify-center text-center opacity-85" style="background-image: url(https://images.unsplash.com/photo-1552844418-3d618ca9af68?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+            <div class="h-[500px] bg-cover bg-center flex flex-col items-center justify-center text-center opacity-85" style="background-image: url(https://storage.googleapis.com/vue-course-api.appspot.com/liquor_store/1709970405629.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=Zj0ZxUVpgJnWLUzxz60WQHgsDttlkYYd5dhFeumTY4pecmpcuFc99h3lojOwaWfZn%2BrcOe0wU9ixTUqLIg12ESOklRS1Khtk71ALl6OlND9g5Bh01E%2F1APQQXtmZwljC%2BIhVoIn8iQ4lXbueCb%2BK2IFWefV3bc2zYZnNcGyyJqZt2mOSq%2BJfT6kxUAfMAc5VIpEwZu2zNZXNgXUzRzfmr3lpMCI7gSoxBvxDDo0FMcwdGySwHGIU8KM5Mm19xYgoWs%2B9k3Wrfoql5rD3cga8Iw2Uz%2FkWckxupPO0XruNrqxfeXJax6kccpyYytlfDKzD0VXEncvvYfPCPmta%2BsrSog%3D%3D);">
                 <div class="">
                     <h2 class="text-6xl font-bold mb-4">
                         商品細節

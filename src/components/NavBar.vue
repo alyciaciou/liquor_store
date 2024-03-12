@@ -1,15 +1,15 @@
 <template>
     <div class="mx-auto p-6 bg-black opacity-90 text-white sticky top-0 z-10 font-bold">
         <nav class="flex items-center justify-between">
-            <router-link to="/" class="cursor-pointer flex items-center duration-300 hover:text-2xl">
-                <img class="w-14 h-10 object-cover" src="/wedding-1.1s-200px.png" alt="">
+            <router-link to="/" class="cursor-pointer flex items-center duration-300 md:hover:text-2xl">
+                <img class="w-14 h-10 object-cover" src="https://storage.googleapis.com/vue-course-api.appspot.com/liquor_store/1709969615623.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=O9P3brrkqKpvUD6eQ8kOCh6rg3A19ONH5kShkNYDhn87lkb4t7%2BzpbKNmEM9xsUjxAFfvtGbzNjuaC0DiaWrFwL672FcjZ24zh2ogBF8RJ5FoN3Xj7e9VzbLqeWMBXQK264bsZvFSnEx0kar8bVeWKBTTaHp%2BqpeFOBnJy510Z%2BscElS0u%2FgbKXAOTWZI6WbUEl1uDGjiLrgPK8tZra0j%2BQxvozT23lm3QNemUBH4stAyS1w0%2BlKXV72o0P%2FvMvaI%2F8X%2FWf9qWf%2FjmFxOtUjs5AFsXy%2FdvM%2BkdiJhzvAyS09LP4gw6vD5HPse2C7H4axQuyRt2tlY25so1NLAZqvtw%3D%3D" alt="">
                 <p>Liquor Store</p>
             </router-link>
             <ul class="flex items-center justify-between">
-                <li class="mr-2 cursor-pointer duration-300 hover:text-xl">
+                <li class="mr-2 cursor-pointer duration-300 md:hover:text-xl">
                     <router-link to="/about">品牌故事</router-link>
                 </li>
-                <li class="mr-2 cursor-pointer duration-300 hover:text-xl">
+                <li class="mr-2 cursor-pointer duration-300 md:hover:text-xl">
                     <router-link to="/products">系列酒藏</router-link>
                 </li>
                 <li class="mr-2 cursor-pointer hover:font-bold">
