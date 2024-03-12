@@ -1,7 +1,9 @@
 <template>
     <div class="bg-[#070707f0] text-white">
         <NavBar/>
-
+        <div v-if="isLoading" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+            <img class="h-16 w-16" src="/Rolling-1s-150px.gif" alt="loading">
+        </div>
         <header>
             <div class="h-[500px] bg-cover bg-center flex flex-col items-center justify-center text-center opacity-85" style="background-image: url(https://images.unsplash.com/photo-1552844418-3d618ca9af68?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
                 <div class="">
@@ -60,6 +62,7 @@
     import Swal from 'sweetalert2'
 
     const route = useRoute()
+    const isLoading = ref(true)
 
     const info = ref('')
     const content = ref('')
@@ -73,7 +76,9 @@
         currentNum.value === 1 ? null : currentNum.value -=1
     }
 
+
     const addProduct = async () => {
+        currentNum.value = parseInt(currentNum.value)
         const info = {
             data:{
                 product_id: route.params.id,
@@ -81,16 +86,18 @@
             }
         }
         console.log(info)
+        isLoading.value = true
         try {
             const res = await addTocart(info) 
+            isLoading.value = false
             console.log(res)
             const Toast = Swal.mixin({
                 toast: true,
                 position: "top-end",
                 showConfirmButton: false,
-                timer: 3000,
+                timer: 1500,
                 timerProgressBar: true,
-                background:'#070707f0',
+                width: '250',
                 didOpen: (toast) => {
                     toast.onmouseenter = Swal.stopTimer;
                     toast.onmouseleave = Swal.resumeTimer;
@@ -109,6 +116,7 @@
     onMounted( async () => {
         try {
             const res = await getProductInfo(route.params.id)
+            isLoading.value = false
             info.value = res.product
             content.value = info.value.content.split(';')
         } catch (error) {
@@ -118,3 +126,10 @@
     })
 
 </script>
+
+<style>
+    .swal2-popup{
+        position: absolute;
+        top: 12%;
+    }
+</style>

@@ -1,7 +1,9 @@
 <template>
     <div class="bg-[#070707f0] text-white">
         <NavBar/>
-
+        <div v-if="isLoading" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+            <img class="h-16 w-16" src="/Rolling-1s-150px.gif" alt="loading">
+        </div>
         <header>
             <div class="h-[500px] bg-cover bg-center flex flex-col items-center justify-center text-center opacity-85" style="background-image: url(https://images.unsplash.com/photo-1552844418-3d618ca9af68?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
                 <div class="">
@@ -101,6 +103,8 @@
     import { onMounted, ref, watch } from 'vue'
 
     import Swal from 'sweetalert2'
+
+    const isLoading = ref(true)
     const products = ref(null)
     const productsList = ref(null)
     const selectType = {
@@ -144,8 +148,10 @@
         console.log()
         queryInfo.value.category = newSelectedType
         queryInfo.value.page = newPage
+        isLoading.value = true
         try {
             const res = await getProducts(queryInfo.value)
+            isLoading.value = false
             products.value = res.products
             productsList.value = res.products
             totalPages.value = res.pagination.total_pages
@@ -162,15 +168,18 @@
                 qty: 1
             }
         }
+        isLoading.value = true
         try {
             const res = await addTocart(info) 
             console.log(res)
+            isLoading.value = false
             const Toast = Swal.mixin({
                 toast: true,
                 position: "top-end",
                 showConfirmButton: false,
-                timer: 3000,
+                timer: 1500,
                 timerProgressBar: true,
+                width: '250',
                 didOpen: (toast) => {
                     toast.onmouseenter = Swal.stopTimer;
                     toast.onmouseleave = Swal.resumeTimer;
@@ -203,13 +212,21 @@
         console.log(page.value)
         console.log(queryInfo.value)
     }
+
+    
     
     onMounted( async () => {
-        const res = await getProducts(queryInfo.value)
-        products.value = res.products
-        productsList.value = res.products
-        totalPages.value = res.pagination.total_pages
-        console.log(res)
+        try {
+            const res = await getProducts(queryInfo.value)
+            isLoading.value = false
+            products.value = res.products
+            productsList.value = res.products
+            totalPages.value = res.pagination.total_pages
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
+        
     })
 </script>
 

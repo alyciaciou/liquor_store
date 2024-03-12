@@ -1,8 +1,9 @@
 <template>
     <div class="bg-[#070707f0] text-white">
         <NavBar/>
-        <!-- https://images.unsplash.com/photo-1573551565922-aec98de55802?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D -->
-        <!-- https://images.unsplash.com/photo-1573551565922-aec98de55802?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D -->
+        <div v-if="isLoading" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+          <img class="h-16 w-16" src="/Rolling-1s-150px.gif" alt="loading">
+        </div>
         <header>
             <div class="h-[500px] bg-cover bg-center flex flex-col items-center justify-center text-center opacity-85" style="background-image: url(https://images.unsplash.com/photo-1550113711-48d525f192e6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
                 <div class="">
@@ -17,7 +18,7 @@
                 <h3 class="text-4xl mb-10 font-bold">關於我們</h3>
                 <ul>
                   <li class="flex-col items-center justify-center  md:flex md:flex-row  md:justify-between mb-6">
-                    <img class="h-[400px] w-full md:w-[48%] object-cover rounded-lg inline-block" src="https://images.unsplash.com/photo-1573551565922-aec98de55802?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                    <img @load="handleImg" class="h-[400px] w-full md:w-[48%] object-cover rounded-lg inline-block" src="https://images.unsplash.com/photo-1573551565922-aec98de55802?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
                     <div class="md:w-[48%] w-full inline-block leading-relaxed mt-4 md:mt-0">
                       <h4 class="mb-2 text-xl">使命</h4>
                       <p>Liquor Store的使命是將世界各地最精彩的葡萄酒和烈酒帶給您的門前。透過精心挑選的品牌和風格多樣的產品，我們希望成為您品酒旅程的良伴，無論是探索新的口味還是深入了解酒類文化，我們都在這裡為您提供支持和專業建議。</p>
@@ -50,4 +51,11 @@
     //components
     import NavBar from '@/components/NavBar.vue'
     import FooTer from '@/components/FooTer.vue'
+
+    import { ref } from 'vue'
+
+    const isLoading = ref(true)
+    const handleImg = () => {
+      isLoading.value = false
+    }
 </script>

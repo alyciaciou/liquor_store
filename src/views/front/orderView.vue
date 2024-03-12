@@ -1,7 +1,9 @@
 <template>
     <div class="bg-[#070707f0] text-white">
         <NavBar/>
-
+        <div v-if="isLoading" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+            <img class="h-16 w-16" src="/Rolling-1s-150px.gif" alt="loading">
+        </div>
         <header>
             <div class="h-[500px] bg-cover bg-center flex flex-col items-center justify-center text-center opacity-85" style="background-image: url(https://images.unsplash.com/photo-1552844418-3d618ca9af68?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
                 <div class="">
@@ -116,6 +118,7 @@
     import { submitOrder, getOrder } from '@/apis/order'
 
     const router = useRouter()
+    const isLoading = ref(true)
     const info = ref('')
 
     const orderInfo = ref({
@@ -139,9 +142,11 @@
           }
         }   
         console.log(orderInfo.value)
+        isLoading.value = true
         try {
             const res = await submitOrder(data)
             console.log(res)
+            isLoading.value = false
             router.push(`/checkout/${res.orderId}`)
         } catch (error) {
             console.log(error)
@@ -151,6 +156,7 @@
     onMounted( async () => {
         try {
             const res = await getCartInfo()
+            isLoading.value = false
             console.log(res)
             info.value = res.data
         } catch (error) {

@@ -1,9 +1,13 @@
 <template>
   <div class="bg-[#070707f0] text-white">
+    <div v-if="isLoading" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <img class="h-16 w-16" src="/Rolling-1s-150px.gif" alt="loading">
+    </div>
     <NavBar/>
     <header>
-      <div class="h-screen bg-cover bg-center  flex flex-col items-center justify-center text-center opacity-85" style="background-image: url(https://storage.googleapis.com/vue-course-api.appspot.com/liquor_store/1709103904637.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=WIWlX1Ve23%2F8FCP%2BJR1SjtxZAmbkR1%2FGY04vgllWEU1vOxmRb1J6w%2FIUhRN9z7ed%2BSBejwk%2FkPZvsMKAIDzWDN6xqvA3PPp2doF1Uywtc5y%2B1ywUyk2fDBsx8RC2sS058mWBFep1UfFW%2FtF0BLxKtZy8Bsu5fG0LEIBiEShEATVc4Ht5UVCgHUoHtz6MufZvtA5Rsp95bMt5XtSizoHPXiGjUMqaZdqxGhAIuQYMlvWaN0Qt7A%2BCplRFxwYuq%2FC%2F3y8jRm7u7D8MtY5qFrWnaW2C0InH1BegZuabrek%2F6vzYOIV9PEFxNhLlYpclp%2BlTpOCxm%2BXVuZ0OmZmxJHArfQ%3D%3D);">
-        <div class="">
+      <div class="relative flex flex-col items-center justify-center text-center opacity-85">
+        <img @load="handleImg" class="h-screen w-full object-cover object-center" src="https://storage.googleapis.com/vue-course-api.appspot.com/liquor_store/1709103904637.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=WIWlX1Ve23%2F8FCP%2BJR1SjtxZAmbkR1%2FGY04vgllWEU1vOxmRb1J6w%2FIUhRN9z7ed%2BSBejwk%2FkPZvsMKAIDzWDN6xqvA3PPp2doF1Uywtc5y%2B1ywUyk2fDBsx8RC2sS058mWBFep1UfFW%2FtF0BLxKtZy8Bsu5fG0LEIBiEShEATVc4Ht5UVCgHUoHtz6MufZvtA5Rsp95bMt5XtSizoHPXiGjUMqaZdqxGhAIuQYMlvWaN0Qt7A%2BCplRFxwYuq%2FC%2F3y8jRm7u7D8MtY5qFrWnaW2C0InH1BegZuabrek%2F6vzYOIV9PEFxNhLlYpclp%2BlTpOCxm%2BXVuZ0OmZmxJHArfQ%3D%3D" alt="">
+        <div class="absolute">
           <h1 class="text-6xl font-bold mb-4 leading-relaxed">
             <p class="pr-20">品味生活</p>
             <p class="pl-20">享受人生</p>
@@ -142,6 +146,8 @@
   import NavBar from '@/components/NavBar.vue'
   import FooTer from '@/components/FooTer.vue'
 
+  import { ref } from 'vue'
+
   const navigation  = [Navigation, Autoplay, Pagination]
 
   const liquorList = [
@@ -155,6 +161,11 @@
     {type: '白蘭地', url: 'https://images.unsplash.com/photo-1500217052183-bc01eee1a74e?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'},
     {type: '梅酒', url: 'https://images.unsplash.com/photo-1575023782549-62ca0d244b39?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'},
   ]
+
+  const isLoading = ref(true)
+  const handleImg = () =>{
+    isLoading.value = false
+  }
 
 </script>
 
