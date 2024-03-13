@@ -45,11 +45,11 @@ const router = createRouter({
       name: "notFound",
       component: () => import("@/views/front/NotFound.vue"),
     },
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    return { top: 0 }
+  },
 })
 
-router.afterEach((to, from) => {
-  window.scrollTo(0, 0);
-})
 
 export default router

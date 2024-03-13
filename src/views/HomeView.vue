@@ -36,11 +36,10 @@
           :pagination="{ clickable: true}" :autoplay="{delay: 5000, disableOnInteraction: false}"
           >
             <swiper-slide v-for="item in liquorList" :key="item.type">
-              <router-link to="/products" class="duration-500 hover:text-lg bg-zinc-900 rounded-lg  hover:opacity-65 cursor-pointer">
+              <router-link :to="{ path: '/products', query: { type: item.type }}" class="duration-500 hover:text-lg bg-zinc-900 rounded-lg  hover:opacity-65 cursor-pointer">
                 <img class="object-cover rounded-t-lg" :src="item.url" alt="">
                 <p class="p-2 bg-[#535252f2] rounded-b-lg">{{item.type}}</p>
               </router-link>
-              
             </swiper-slide>
           </swiper>
         </div>
@@ -74,7 +73,7 @@
           <h3 class="text-4xl mb-10 font-bold">熱銷系列</h3>
           <ul class=" flex flex-row items-center justify-between flex-wrap">
             <li v-for="item in liquorList.slice(0,4)" :key="item.type" class="hover:opacity-65 duration-500 hover:text-lg cursor-pointer md:w-[24%] w-[46%] mb-6">
-              <router-link to="/products">
+              <router-link :to="{ path: '/products', query: { type: item.type }}">
                 <img class="object-cover rounded-t-lg  w-full" :src="item.url" alt="">
                 <p class="p-2 bg-[#535252f2] rounded-b-lg">{{item.type}}</p>
               </router-link>

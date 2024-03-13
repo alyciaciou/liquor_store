@@ -38,7 +38,7 @@
                                 <img v-if="isChangeNum && itemIndex === index" class="h-6 w-6 mx-auto " src="/Rolling-1s-150px.gif" alt="loading">
                                 <input @change="changeNum($event, item, index)" v-else :value="item.qty" type="text" class=" text-center bg-gray-800  p-2 w-[60%]">
                                 
-                                <button @click="addNum($event, item, index)" class="duration-500 hover:bg-white hover:text-black font-extrabold text-white py-2 rounded-r-lg w-[20%] text-center" type="button">+</button>
+                                <button @click="addNum(item, index)" class="duration-500 hover:bg-white hover:text-black font-extrabold text-white py-2 rounded-r-lg w-[20%] text-center" type="button">+</button>
                             </div>
                         </td>
                         <td class="w-[10%]">{{ item.total }}</td>
@@ -85,7 +85,9 @@
     import FooTer from '@/components/FooTer.vue'
 
     import { useRouter } from 'vue-router'
+    import { useCartNumStore } from '@/stores/counter'
     import { ref, onMounted } from 'vue'
+    
 
     //api
     import { getCartInfo, updateCartItem, deleteCartItem } from '@/apis/cartApi'
@@ -93,6 +95,7 @@
     import Swal from 'sweetalert2'
 
     const router = useRouter()
+    const cartStore = useCartNumStore()
 
     const isLoading = ref(true)
     const isChangeNum = ref(false)
@@ -189,12 +192,13 @@
                 const cartInfo = await getCartInfo()
                 info.value = cartInfo.data
                 Swal.fire({
-                title: "刪除成功",
-                icon: "success",
-                didOpen: () => {
-                    Swal.hideLoading()
-                },
-            })
+                    title: "刪除成功",
+                    icon: "success",
+                    didOpen: () => {
+                        Swal.hideLoading()
+                    },
+                })
+                cartStore.getCartNum()
             } catch (error) {
                 console.log(error)
             }

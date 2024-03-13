@@ -17,7 +17,7 @@
             <ul class="py-8 text-center flex items-center justify-between w-full">
                 <li class="w-[30%] ">
                     <select @change="changeType" class="bg-[#535252f2] w-[80%] md:w-[50%] p-2 rounded-lg">
-                        <option v-for="item in type" :key="item" :value="item">{{ item }}</option>
+                        <option :selected="selectedType === item" v-for="item in type" :key="item" :value="item">{{ item }}</option>
                     </select>
                 </li>
                 <li class="w-[36%] ">
@@ -35,7 +35,7 @@
 
             <div class="py-8 text-center flex items-center justify-between w-full flex-col md:flex md:flex-row flex-wrap">
                 <div v-for="item in productsList" :key="item.id" class="md:w-[30%] lg:w-[24%] w-[80%] mb-6">
-                    <router-link :to="`/product/${ item.id }`">
+                    <router-link :to="{ path: `/product/${ item.id }`, query: { type: item.category }}">
                         <div class="flex flex-col items-center justify-between p-2 bg-[#272626e8] rounded-lg duration-500 hover:bg-[#535252ab] hover:opacity-75 h-[380px] ">
                             <img class="object-cover rounded-lg h-[200px] " :src="item.imageUrl" alt="">
                             <div>
@@ -43,7 +43,7 @@
                                 <p class="p-1">售價：NT$.{{ item.price }}  <del class="text-sm ml-2">原價：NT$.{{ item.origin_price }}</del></p>
                             </div>
                             <div class="flex items-center justify-between">
-                                <router-link :to="`/product/${ item.id }`" class="block border-2  p-2 rounded-lg cursor-pointer duration-500 hover:bg-white hover:text-black">
+                                <router-link :to="{ path: `/product/${ item.id }`, query: { type: item.category }}" class="block border-2  p-2 rounded-lg cursor-pointer duration-500 hover:bg-white hover:text-black">
                                     瞭解更多
                                 </router-link>
                                 <button @click.prevent="addProduct(item.id)" type="button" class=" border-2 p-2 rounded-lg cursor-pointer duration-500 hover:bg-white hover:text-black">
@@ -101,8 +101,15 @@
     import { addTocart } from '@/apis/cartApi'
 
     import { onMounted, ref, watch } from 'vue'
+    import { useRoute } from 'vue-router'
+    import { useCartNumStore } from '@/stores/counter'
 
     import Swal from 'sweetalert2'
+
+    
+
+    const route = useRoute()
+    const cartStore = useCartNumStore()
 
     const isLoading = ref(true)
     const products = ref(null)
@@ -153,6 +160,7 @@
             const res = await getProducts(queryInfo.value)
             isLoading.value = false
             products.value = res.products
+            
             productsList.value = res.products
             totalPages.value = res.pagination.total_pages
             console.log(res)
@@ -173,6 +181,7 @@
             const res = await addTocart(info) 
             console.log(res)
             isLoading.value = false
+            cartStore.getCartNum()
             const Toast = Swal.mixin({
                 toast: true,
                 position: "top-end",
@@ -216,6 +225,8 @@
     
     
     onMounted( async () => {
+        selectedType.value = route.query.type ? route.query.type : selectedType.value
+        queryInfo.value.category = selectedType.value
         try {
             const res = await getProducts(queryInfo.value)
             isLoading.value = false

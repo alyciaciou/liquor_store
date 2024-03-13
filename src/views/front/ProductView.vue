@@ -53,6 +53,7 @@
     import FooTer from '@/components/FooTer.vue'
 
     import { useRoute } from 'vue-router'
+    import { useCartNumStore } from '@/stores/counter'
     import { ref, onMounted } from 'vue'
 
     //api
@@ -62,6 +63,7 @@
     import Swal from 'sweetalert2'
 
     const route = useRoute()
+    const cartStore = useCartNumStore()
     const isLoading = ref(true)
 
     const info = ref('')
@@ -91,6 +93,7 @@
             const res = await addTocart(info) 
             isLoading.value = false
             console.log(res)
+            cartStore.getCartNum()
             const Toast = Swal.mixin({
                 toast: true,
                 position: "top-end",
