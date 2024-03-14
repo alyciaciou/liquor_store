@@ -36,8 +36,8 @@
             <div class="py-8 text-center flex items-center justify-between w-full flex-col md:flex md:flex-row flex-wrap">
                 <div v-for="item in productsList" :key="item.id" class="md:w-[30%] lg:w-[24%] w-[80%] mb-6">
                     <router-link :to="{ path: `/product/${ item.id }`, query: { type: item.category }}">
-                        <div class="flex flex-col items-center justify-between p-2 bg-[#272626e8] rounded-lg duration-500 hover:bg-[#535252ab] hover:opacity-75 h-[380px] ">
-                            <img class="object-cover rounded-lg h-[200px] " :src="item.imageUrl" alt="">
+                        <div class="flex flex-col items-center justify-between p-2 bg-[#272626e8] rounded-lg duration-500 hover:bg-[#535252ab] hover:opacity-75 h-[400px] ">
+                            <img class="object-cover rounded-lg h-[200px] w-[150px]" :src="item.imageUrl" alt="">
                             <div>
                                 <p class="p-1">{{item.title}}</p>
                                 <p class="p-1">售價：NT$.{{ item.price }}  <del class="text-sm ml-2">原價：NT$.{{ item.origin_price }}</del></p>
