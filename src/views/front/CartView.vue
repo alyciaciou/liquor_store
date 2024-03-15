@@ -17,9 +17,9 @@
             <table v-if="info !== null && info.carts.length !== 0" class="border-t-2 w-full py-8">
                 <thead class="bg-[#272626e8] border-b-2 text-center">
                     <tr>
-                        <th class="p-4"></th>
+                        <!-- <th class="p-4"></th> -->
                         <th class="p-4">品項</th>
-                        <th class="p-4">單價</th>
+                        <th class="p-4 ">單價</th>
                         <th class="p-4">數量</th>
                         <th class="p-4">小計</th>
                         <th class="p-4"></th>
@@ -27,13 +27,16 @@
                 </thead>
                 <tbody class="text-center">
                     <tr class="border-b-2" v-for="(item, index) in info.carts">
-                        <td class="w-[14%]">
-                            <img :src="item.product.imageUrl" alt="">
+                        <td class="w-[24%] p-2">
+                            <div class="flex flex-col items-center justify-between">
+                                <img :src="item.product.imageUrl" class="rounded-lg md:h-[200px] md:w-[160px] object-cover mb-2" alt="">
+                                <p class="">{{ item.product.title }}</p>
+                            </div>
                         </td>
-                        <td class="w-[14%]">{{ item.product.title }}</td>
-                        <td class="w-[14%]">{{ item.product.price }}</td>
-                        <td class="">
-                            <div class="w-[80%] border-2 rounded-lg mb-4 md:mb-0 flex items-center">
+                        <!-- <td class="w-[14%] p-2">{{ item.product.title }}</td> -->
+                        <td class="w-[20%] p-2">{{ item.product.price }}</td>
+                        <td class="p-2 w-[24%]">
+                            <div class="border-2 rounded-lg mb-4 md:mb-0 flex items-center">
                                 <button :disabled="item.qty === 1" @click="minusNum(item, index)" class="duration-500 hover:bg-white hover:text-black font-extrabold text-white py-2 rounded-l-lg w-[20%] text-center" type="button">-</button>
                                 <img v-if="isChangeNum && itemIndex === index" class="h-6 w-6 mx-auto " src="/Rolling-1s-150px.gif" alt="loading">
                                 <input @change="changeNum($event, item, index)" v-else :value="item.qty" type="text" class=" text-center bg-gray-800  p-2 w-[60%]">
@@ -41,8 +44,9 @@
                                 <button @click="addNum(item, index)" class="duration-500 hover:bg-white hover:text-black font-extrabold text-white py-2 rounded-r-lg w-[20%] text-center" type="button">+</button>
                             </div>
                         </td>
-                        <td class="w-[10%]">{{ item.total }}</td>
-                        <td  class="w-[10%]">
+                        <td class="w-[20%] p-2">{{ item.total }}</td>
+                        <td  class="w-[10%] p-2">
+                            <!-- {{ item.total }} -->
                             <button @click="deleteItem(item.id)" type="button">
                                 <svg class="w-6 h-6" fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z"/></svg>
                             </button>

@@ -30,12 +30,12 @@
                         </thead>
                         <tbody class="text-center">
                             <tr class="border-b-2" v-for="(item, index) in info.carts">
-                                <td class="w-[30%]">
-                                    <img :src="item.product.imageUrl" alt="">
+                                <td class="w-[30%] p-4">
+                                    <img class="rounded-lg" :src="item.product.imageUrl" alt="">
                                 </td>
-                                <td class="w-[30%]">{{ item.product.title }}</td>
-                                <td class="w-[20%]">{{ item.qty }}</td>
-                                <td class="w-[20%]">{{ item.total }}</td>
+                                <td class="w-[30%] p-4">{{ item.product.title }}</td>
+                                <td class="w-[20%] p-4">{{ item.qty }}</td>
+                                <td class="w-[20%] p-4">{{ item.total }}</td>
                             </tr>
                         </tbody>
                         <tfoot class="text-right">

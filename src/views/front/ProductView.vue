@@ -15,9 +15,9 @@
         </header>
         <main class="container mx-auto p-6 md:p-24 mb-6">
             <div class="py-8 text-center flex flex-col md:flex-row items-center justify-between">
-                <img class="object-cover w-[70%] md:w-[50%]" :src="info.imageUrl" alt="">
+                <img class="object-cover block w-[70%] md:w-[48%] h-[50%] rounded-lg mb-6 md:mb-0" :src="info.imageUrl" alt="">
 
-                <div class="w-[70%] md:w-[50%]">
+                <div class="w-[70%] md:w-[48%]">
                     <p class="text-4xl mb-10 font-bold">{{ info.title }}</p>
                     <p class="mb-2">{{ info.description }}</p>
                     <ul class="mb-2">
