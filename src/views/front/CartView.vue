@@ -62,17 +62,17 @@
             </table>
                 
             <div v-if="info !== null && info.carts.length !== 0" class="py-8 text-center flex flex-col md:flex-row items-center justify-between">
-                <router-link to="/products" class="border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-[50%] md:w-[20%] mb-4">
+                <router-link to="/products" class="border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-full md:w-[35%] lg:w-[20%] mb-4">
                     繼續購物
                 </router-link>
-                <router-link to="/order" class="border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-[50%] md:w-[20%] mb-4">
+                <router-link to="/order" class="border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-full md:w-[35%] lg:w-[20%] mb-4">
                     下一步
                 </router-link>
             </div>
 
             <div v-if="info !== null && info.carts.length === 0" class="py-8 text-center">
                 <p class="p-2 text-3xl mb-8">尚未加入商品</p>
-                <router-link to="/products" class="inline-block border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-[50%] md:w-[20%] mb-4">
+                <router-link to="/products" class="inline-block border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-[60%] md:w-[25%] mb-4">
                     前往購物
                 </router-link>
             </div>

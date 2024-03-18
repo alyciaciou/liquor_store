@@ -13,10 +13,10 @@
                 </div>
             </div>
         </header>
-        <main class="container mx-auto p-6 md:p-24 mb-6">
-            <div class="flex flex-col justify-center md:flex-row md:justify-between">
-                <div class="w-[100%] md:w-[48%]">
-                    <h3 class="mb-6 font-bold text-2xl">
+        <main class="container mx-auto p-6 lg:p-24 mb-6">
+            <div class="flex flex-col justify-center lg:flex-row lg:justify-between py-8">
+                <div class="w-full lg:w-[48%]">
+                    <h3 class="mb-6 font-bold text-2xl text-center lg:text-start">
                         訂單內容
                     </h3>
                     <table class="border-t-2 w-full">
@@ -31,10 +31,10 @@
                         <tbody class="text-center">
                             <tr class="border-b-2" v-for="(item, index) in info.carts">
                                 <td class="w-[30%] p-4">
-                                    <img class="rounded-lg" :src="item.product.imageUrl" alt="">
+                                    <img class="rounded-lg object-cover" :src="item.product.imageUrl" alt="">
                                 </td>
                                 <td class="w-[30%] p-4">{{ item.product.title }}</td>
-                                <td class="w-[20%] p-4">{{ item.qty }}</td>
+                                <td class="w-[30%] p-4">{{ item.qty }}</td>
                                 <td class="w-[20%] p-4">{{ item.total }}</td>
                             </tr>
                         </tbody>
@@ -46,7 +46,7 @@
                     </table>
                 </div>
 
-                <div class="w-[100%] md:w-[48%]">
+                <div class="w-full lg:w-[48%]">
                         <h3 class="mb-6 font-bold text-2xl">
                             填寫訂購資訊
                             <small class="text-red-500"> ( * 為必填資訊)</small>
@@ -102,8 +102,6 @@
                         </VForm>
                 </div>
             </div>
-            
-            
         </main>
         
         <FooTer/>

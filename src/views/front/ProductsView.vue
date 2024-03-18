@@ -14,21 +14,16 @@
             </div>
         </header>
         <main class="container mx-auto p-6 md:p-24 mb-6">
-            <ul class="py-8 text-center flex items-center justify-between w-full">
-                <li class="w-[30%] ">
+            <ul class="py-8 text-center flex items-center justify-center w-full">
+                <li class="w-[40%] ">
                     <select @change="changeType" class="bg-[#535252f2] w-[80%] md:w-[50%] p-2 rounded-lg">
                         <option :selected="selectedType === item" v-for="item in type" :key="item" :value="item">{{ item }}</option>
                     </select>
                 </li>
-                <li class="w-[36%] ">
+                <li class="w-[40%] ">
                     <select @change="changeBrand" class="bg-[#535252f2] w-[80%] md:w-[50%] p-2 rounded-lg">
                         <option selected value="全部">全部</option>
                         <option v-for="item in selectType[selectedType]" :key="item" :value="item">{{ item }}</option>
-                    </select>
-                </li>
-                <li class="w-[33%] ">
-                    <select class="bg-[#535252f2] w-[80%] md:w-[50%] p-2 rounded-lg">
-                        <option v-for="item in type" :key="item" :value="item">{{ item }}</option>
                     </select>
                 </li>
             </ul>
@@ -55,7 +50,7 @@
                 </div>
             </div>
 
-            <div class="pagination">
+            <div class="pagination py-8">
                 <ul class="flex items-center justify-center">
                     <li>
                         <button @click="changePage('firstPage')" class="py-2 px-4 border-2 duration-500 hover:bg-white hover:text-black" type="button">
@@ -115,18 +110,15 @@
     const products = ref(null)
     const productsList = ref(null)
     const selectType = {
-        '威士忌':['麥卡倫', '蘇格登', '亞伯樂'], 
-        '葡萄酒':['杜瓦樂華', '蘇格登', '亞伯樂'], 
-        '香檳':['杜瓦樂華', '保羅傑'], 
-        '氣泡酒':['米娜多', 'TOSO', '羅卡酒莊'], 
-        '利口':['安丘瑞耶斯', '吉拿', '芙內', '義大利庫司'], 
-        '蘭姆':['麥卡倫', '杜瓦樂華', '亞伯樂'], 
-        '琴酒':['杜瓦樂華', '蘇格登', '亞伯樂'], 
-        '白蘭地':['皮耶費朗', '軒尼詩', '杜瓦樂華'], 
-        '梅酒':['麥卡倫', '蘇格登', '亞伯樂'],
+        '威士忌':['麥卡倫', '蘇格登', '亞伯樂', '布萊迪'], 
+        '葡萄酒':['漢彌根', '樂花園', '富飛'], 
+        '香檳':['酩悅', '路易侯德爾', '凱歌', '保羅傑', '杜瓦樂華'], 
+        '氣泡酒':['羅卡酒莊', 'TOSO', '米娜多'], 
+        '利口':['安丘瑞耶斯', '吉拿', '芙內', '義大利庫司', '貝禮詩', 'MB'], 
+        '白蘭地':['皮耶費朗', '軒尼詩', '馬爹利'], 
     }
     
-    const type = ['威士忌', '葡萄酒', '香檳', '氣泡酒', '利口', '蘭姆', '琴酒', '白蘭地', '梅酒' ]
+    const type = ['威士忌', '葡萄酒', '香檳', '氣泡酒', '利口', '白蘭地' ]
     const selectedType = ref('威士忌')
     const page = ref(1)
     const queryInfo = ref(
