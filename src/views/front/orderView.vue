@@ -51,34 +51,38 @@
                             填寫訂購資訊
                             <small class="text-red-500"> ( * 為必填資訊)</small>
                         </h3>
-                        <form>
+                        <VForm @submit="confirmOrden">
                             <div class="mb-4">
                                 <label for="email" class="mb-1">
                                     Email
                                     <span class="text-red-500">*</span>
                                 </label>
-                                <input v-model="orderInfo.email" id="email" type="email" class="w-full rounded p-1 text-black " placeholder="請輸入 Email" name="email">
+                                <VField rules="required|email" v-model="orderInfo.email" id="email" type="email" class="w-full rounded p-1 text-black mb-2" placeholder="請輸入 Email" name="email"/>
+                                <ErrorMessage class="text-red-500" name="email"/>
                             </div>
                             <div class="mb-4">
                                 <label for="name" class="mb-1">
                                     收件人姓名
                                     <span class="text-red-500">*</span>
                                 </label>
-                                <input v-model="orderInfo.name" id="name" type="text" class="w-full rounded p-1 text-black" placeholder="請輸入姓名" name="姓名">
+                                <VField rules="required" v-model="orderInfo.name" id="name" type="text" class="w-full rounded p-1 text-black mb-2" placeholder="請輸入姓名" name="name"/>
+                                <ErrorMessage class="text-red-500" name="name"/>
                             </div>
                             <div class="mb-4">
                                 <label for="tel" class="mb-1">
                                     收件人電話
                                     <span class="text-red-500">*</span>
                                 </label>
-                                <input v-model="orderInfo.tel" id="tel" type="text" class="w-full rounded p-1 text-black" placeholder="請輸入電話" name="電話">
+                                <VField rules="required|numeric|min:8" v-model="orderInfo.tel" id="tel" type="text" class="w-full rounded p-1 text-black mb-2" placeholder="請輸入電話" name="tel"/>
+                                <ErrorMessage class="text-red-500" name="tel"/>
                             </div>
                             <div class="mb-4">
                                 <label for="address" class="mb-1">
                                     收件人地址
                                     <span class="text-red-500">*</span>
                                 </label>
-                                <input v-model="orderInfo.address" id="address" type="text" class="w-full rounded p-1 text-black" placeholder="請輸入地址" name="地址">
+                                <VField rules="required" v-model="orderInfo.address" id="address" type="text" class="w-full rounded p-1 text-black mb-2" placeholder="請輸入地址" name="address"/>
+                                <ErrorMessage class="text-red-500" name="address"/>
                             </div>
                             <div class="mb-4">
                                 <label for="message" class="mb-1">
@@ -86,18 +90,20 @@
                                 </label>
                                 <textarea v-model="orderInfo.message" id="message" class="w-full rounded-lg p-1 text-black" cols="30" rows="10"></textarea>
                             </div>
-                        </form>
+
+                            <div class="text-center flex flex-col md:flex-row items-center justify-between">
+                                <router-link to="/cart" class="border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-full md:w-[35%] mb-4">
+                                    上一步
+                                </router-link>
+                                <button type="submit" class="border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-full md:w-[35%] mb-4">
+                                    送出訂單
+                                </button>
+                            </div>
+                        </VForm>
                 </div>
             </div>
             
-            <div class="py-8 text-center flex flex-col md:flex-row items-center justify-between">
-                <router-link to="/cart" class="border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-[50%] md:w-[20%] mb-4">
-                    上一步
-                </router-link>
-                <button @click="confirmOrden" type="button" class="border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-[50%] md:w-[20%] mb-4">
-                    送出訂單
-                </button>
-            </div>
+            
         </main>
         
         <FooTer/>
@@ -117,6 +123,22 @@
     import { getCartInfo,  } from '@/apis/cartApi'
     import { submitOrder, getOrder } from '@/apis/order'
 
+    import { Field as VField, Form as VForm, ErrorMessage, defineRule, configure } from 'vee-validate'
+    import * as AllRules from '@vee-validate/rules'
+    import { localize, setLocale } from '@vee-validate/i18n'
+    import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
+
+    Object.keys(AllRules).forEach((rule) => {
+        console.log(rule)
+        defineRule(rule, AllRules[rule])
+    })
+    configure({
+        generateMessage: localize({ zh_TW: zhTW }),
+        validateOnInput: true,
+    })
+    setLocale('zh_TW')
+
+
     const router = useRouter()
     const isLoading = ref(true)
     const info = ref('')
@@ -130,6 +152,7 @@
     })
 
     const confirmOrden = async () => {
+        console.log('hii')
         const data = {
             "data": {
                 "user": {
