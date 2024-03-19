@@ -63,7 +63,7 @@
                         </button>
                     </li>
                     <li v-for="(page, index) in totalPages" :key="index + 'page'">
-                        <button @click="changePage('currentPage', page)" class="py-2 px-4 border-2 duration-500 hover:bg-white hover:text-black" type="button">
+                        <button @click="changePage('currentPage', page)" class="py-2 px-4 border-2 duration-500 hover:bg-white hover:text-black" type="button" :class="{'bg-stone-300':clickedPage === page, 'text-black':clickedPage === page}">
                             {{ page }}
                         </button>
                     </li>
@@ -96,7 +96,7 @@
     import { addTocart } from '@/apis/cartApi'
 
     import { onMounted, ref, watch } from 'vue'
-    import { useRoute } from 'vue-router'
+    import { useRoute, useRouter } from 'vue-router'
     import { useCartNumStore } from '@/stores/counter'
 
     import Swal from 'sweetalert2'
@@ -104,6 +104,7 @@
     
 
     const route = useRoute()
+    const router = useRouter()
     const cartStore = useCartNumStore()
 
     const isLoading = ref(true)
@@ -119,7 +120,7 @@
     }
     
     const type = ['威士忌', '葡萄酒', '香檳', '氣泡酒', '利口', '白蘭地' ]
-    const selectedType = ref('威士忌')
+    const selectedType = ref('')
     const page = ref(1)
     const queryInfo = ref(
         {
@@ -129,9 +130,12 @@
     )
     const changeType = (e) => {
         selectedType.value = e.target.value
+        router.replace({ path: '/products', query: { type: `${e.target.value}` } })
     }
 
+    const brand = ref('全部')
     const changeBrand = (e) => {
+        brand.value = e.target.value
         if(e.target.value === '全部'){
             productsList.value = products.value
         } else {
@@ -143,22 +147,37 @@
         
     }
 
-    watch([selectedType, page], async ([newSelectedType, newPage]) => {
-        console.log()
-        queryInfo.value.category = newSelectedType
-        queryInfo.value.page = newPage
+    const queryProducts = async () => {
         isLoading.value = true
         try {
             const res = await getProducts(queryInfo.value)
             isLoading.value = false
             products.value = res.products
-            
             productsList.value = res.products
             totalPages.value = res.pagination.total_pages
             console.log(res)
         } catch (error) {
             console.log(error)
         }
+    }
+
+    watch(page, async (newPage) => {
+        queryInfo.value.page = newPage
+        await queryProducts()
+        if(brand.value !== '全部'){
+            productsList.value = products.value.filter((item)=>{
+                return item.brand === brand.value
+            })
+        }else {
+            productsList.value = products.value
+        }
+        
+    })
+
+    watch(selectedType, (newSelectedType) => {
+        queryInfo.value.category = newSelectedType
+        queryInfo.value.page = 1
+        queryProducts()
     })
 
     const addProduct = async (id)=>{
@@ -197,8 +216,8 @@
 
     }
     const totalPages = ref(null)
+    const clickedPage = ref(1)
     const changePage = async (type, currentPage) => {
-        console.log(type, currentPage)
         if(type === 'firstPage'){
             page.value = 1
         }else if(type === 'previousPage'){
@@ -210,14 +229,21 @@
         }else if(type === 'lastPage'){
             page.value = totalPages.value
         }
-        console.log(page.value)
-        console.log(queryInfo.value)
+        clickedPage.value = page.value
     }
 
-    
-    
+    router.beforeEach((to, from, next) => {
+        if (to.path === from.path && to.query.type !== from.query.type) {
+            selectedType.value = to.query.type
+            queryInfo.value.category = selectedType.value
+            next()
+        }else {
+            next()
+        }
+    })
+
     onMounted( async () => {
-        selectedType.value = route.query.type ? route.query.type : selectedType.value
+        selectedType.value = route.query.type 
         queryInfo.value.category = selectedType.value
         try {
             const res = await getProducts(queryInfo.value)
@@ -229,8 +255,8 @@
         } catch (error) {
             console.log(error)
         }
-        
     })
+
 </script>
 
 <style>
