@@ -98,6 +98,7 @@
     import { onMounted, ref, watch } from 'vue'
     import { useRoute, useRouter } from 'vue-router'
     import { useCartNumStore } from '@/stores/counter'
+    import { useAllProductsStore } from '@/stores/getProducts'
 
     import Swal from 'sweetalert2'
 
@@ -106,7 +107,8 @@
     const route = useRoute()
     const router = useRouter()
     const cartStore = useCartNumStore()
-
+    const productsStore = useAllProductsStore()
+    
     const isLoading = ref(true)
     const products = ref(null)
     const productsList = ref(null)
@@ -116,7 +118,7 @@
         '香檳':['酩悅', '路易侯德爾', '凱歌', '保羅傑', '杜瓦樂華'], 
         '氣泡酒':['羅卡酒莊', 'TOSO', '米娜多'], 
         '利口':['安丘瑞耶斯', '吉拿', '芙內', '義大利庫司', '貝禮詩', 'MB'], 
-        '白蘭地':['皮耶費朗', '軒尼詩', '馬爹利'], 
+        '白蘭地':['皮耶費朗', '軒尼詩'], 
     }
     
     const type = ['威士忌', '葡萄酒', '香檳', '氣泡酒', '利口', '白蘭地' ]
@@ -134,15 +136,25 @@
     }
 
     const brand = ref('全部')
-    const changeBrand = (e) => {
+    const clickedPage = ref(1)
+    const changeBrand = async (e) => {
         brand.value = e.target.value
         if(e.target.value === '全部'){
-            productsList.value = products.value
+            if(page.value === 1){
+                await queryProducts()
+            }else{
+                page.value = 1
+                clickedPage.value = page.value
+            }
+            
         } else {
-            const data = products.value.filter((item)=>{
+            const data = productsStore.allProducts.filter((item)=>{
+                console.log( item.brand === e.target.value)
                 return item.brand === e.target.value
             })
             productsList.value = data
+            totalPages.value = Math.ceil(data.length / 10)
+            clickedPage.value = 1
         }
         
     }
@@ -164,6 +176,7 @@
     watch(page, async (newPage) => {
         queryInfo.value.page = newPage
         await queryProducts()
+        window.scrollTo({top:0})
         if(brand.value !== '全部'){
             productsList.value = products.value.filter((item)=>{
                 return item.brand === brand.value
@@ -216,7 +229,7 @@
 
     }
     const totalPages = ref(null)
-    const clickedPage = ref(1)
+    
     const changePage = async (type, currentPage) => {
         if(type === 'firstPage'){
             page.value = 1
@@ -252,6 +265,12 @@
             productsList.value = res.products
             totalPages.value = res.pagination.total_pages
             console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
+
+        try {
+            await productsStore.getProducts()
         } catch (error) {
             console.log(error)
         }
