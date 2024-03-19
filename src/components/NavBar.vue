@@ -5,19 +5,25 @@
                 <img class="w-14 h-10 object-cover" src="https://storage.googleapis.com/vue-course-api.appspot.com/liquor_store/1709969615623.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=O9P3brrkqKpvUD6eQ8kOCh6rg3A19ONH5kShkNYDhn87lkb4t7%2BzpbKNmEM9xsUjxAFfvtGbzNjuaC0DiaWrFwL672FcjZ24zh2ogBF8RJ5FoN3Xj7e9VzbLqeWMBXQK264bsZvFSnEx0kar8bVeWKBTTaHp%2BqpeFOBnJy510Z%2BscElS0u%2FgbKXAOTWZI6WbUEl1uDGjiLrgPK8tZra0j%2BQxvozT23lm3QNemUBH4stAyS1w0%2BlKXV72o0P%2FvMvaI%2F8X%2FWf9qWf%2FjmFxOtUjs5AFsXy%2FdvM%2BkdiJhzvAyS09LP4gw6vD5HPse2C7H4axQuyRt2tlY25so1NLAZqvtw%3D%3D" alt="">
                 <p>Liquor Store</p>
             </router-link>
-            <ul class="flex items-center justify-between">
-                <li class="mr-2 cursor-pointer duration-300 md:hover:text-xl">
-                    <router-link to="/about">品牌故事</router-link>
-                </li>
-                <li class="mr-2 cursor-pointer duration-300 md:hover:text-xl">
-                    <router-link to="/products">系列酒藏</router-link>
-                </li>
-                <li class="mr-2 hover:font-bold">
+            <div class="flex items-center justify-center sm:hidden">
+                <svg @click="changeMode" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 p-1 cursor-pointer duration-300 hover:scale-150 mr-2"  fill="white" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
+                <div class="hover:font-bold" :class="{'bg-slate-300':currentPage === '/cart', 'text-black':currentPage === '/cart', 'rounded-sm':currentPage === '/cart'}">
                     <router-link class="relative" to="/cart">
-                        <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class=" bi bi-cart-plus w-6 h-6 duration-300 hover:scale-150" viewBox="0 0 16 16">
-                            <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z"/>
-                            <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg"  fill="white" class=" w-6 h-6 duration-300 hover:scale-150" viewBox="0 0 576 512"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+                        <span class="absolute bottom-4 right-[-6px] bg-red-600 px-[4px] rounded-full text-sm">{{ cartStore.cartNum }}</span>
+                    </router-link>
+                </div>
+            </div>
+            <ul class="sm:flex items-center justify-between hidden">
+                <li class="p-1 mr-2 cursor-pointer duration-300" :class="{'bg-slate-300':currentPage === '/about', 'text-black':currentPage === '/about', 'rounded-sm':currentPage === '/about'}">
+                    <router-link to="/about" >品牌故事</router-link>
+                </li>
+                <li class="p-1 mr-2 cursor-pointer duration-300" :class="{'bg-slate-300':currentPage === '/products', 'text-black':currentPage === '/products', 'rounded-sm':currentPage === '/products'}">
+                    <router-link :to="{ path: '/products', query: { type: '威士忌' }}">系列酒藏</router-link>
+                </li>
+                <li class="p-1 mr-2 hover:font-bold" :class="{'bg-slate-300':currentPage === '/cart', 'text-black':currentPage === '/cart', 'rounded-sm':currentPage === '/cart'}">
+                    <router-link class="relative" to="/cart">
+                        <svg xmlns="http://www.w3.org/2000/svg"  fill="white" class=" w-6 h-6 duration-300 hover:scale-150" viewBox="0 0 576 512"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
                         <span class="absolute bottom-4 right-[-6px] bg-red-600 px-[4px] rounded-full text-sm">{{ cartStore.cartNum }}</span>
                     </router-link>
                 </li>
@@ -28,14 +34,38 @@
                 </li> -->
             </ul>
         </nav>
+        <ul v-if="isSmall" class="flex flex-col items-center justify-between">
+                <li class="mb-2 cursor-pointer duration-300 hover:text-xl" :class="{'bg-slate-300':currentPage === '/about', 'text-black':currentPage === '/about', 'rounded-sm':currentPage === '/about'}">
+                    <router-link to="/about" >品牌故事</router-link>
+                </li>
+                <li class="mb-2 cursor-pointer duration-300 hover:text-xl" :class="{'bg-slate-300':currentPage === '/products', 'text-black':currentPage === '/products', 'rounded-sm':currentPage === '/products'}">
+                    <router-link :to="{ path: '/products', query: { type: '威士忌' }}">系列酒藏</router-link>
+                </li>
+        </ul>
     </div>
 </template>
 
 
 <script setup>
     import { useCartNumStore } from '@/stores/counter'
+    import { ref, onMounted } from 'vue'
+    import { useRoute, useRouter } from 'vue-router'
+
 
     const cartStore = useCartNumStore()
     cartStore.getCartNum()
+
+    const currentPage = ref(null)
+    
+    const route = useRoute()
+
+    const isSmall = ref(false)
+    const changeMode = () => {
+        isSmall.value = !isSmall.value
+    }
+
+    onMounted(() => {
+        currentPage.value = route.path
+    })
 </script>
 
