@@ -2,12 +2,12 @@
     <footer class="p-6 bg-black text-white text-center">
       <div class="flex justify-center h-full mb-4">
         <div class="mr-10 flex flex-col items-center h-[33%]">
-          <p class="mb-4 font-bold">關於我們</p>
+          <p class="mb-4 font-bold border-b-2">關於我們</p>
           <router-link class="duration-300 hover:text-lg block" to="/about">品牌故事</router-link>
         </div>
 
         <div class="mr-10 flex flex-col items-center h-[33%]">
-          <p class="mb-4 font-bold">熱銷系列</p>
+          <p class="mb-4 font-bold border-b-2">熱銷系列</p>
           <ul>
             <li class="mb-2">
               <router-link class="duration-300 hover:text-lg block" :to="{ path: '/products', query: { type: '威士忌' }}">威士忌</router-link>
@@ -24,7 +24,7 @@
           </ul>
         </div>
         <div class="flex flex-col items-center h-[33%]">
-          <p class="mb-4 font-bold">聯絡我們</p>
+          <p class="mb-4 font-bold border-b-2">聯絡我們</p>
           <ul>
             <li class="mb-2">
               <a href="https://github.com/alyciaciou/liquor_store" target="_blank" rel="noopener noreferrer">
