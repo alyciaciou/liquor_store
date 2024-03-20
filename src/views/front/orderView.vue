@@ -121,6 +121,7 @@
     import { getCartInfo,  } from '@/apis/cartApi'
     import { submitOrder, getOrder } from '@/apis/order'
 
+    //vee-validate
     import { Field as VField, Form as VForm, ErrorMessage, defineRule, configure } from 'vee-validate'
     import * as AllRules from '@vee-validate/rules'
     import { localize, setLocale } from '@vee-validate/i18n'
@@ -150,7 +151,6 @@
     })
 
     const confirmOrden = async () => {
-        console.log('hii')
         const data = {
             "data": {
                 "user": {
@@ -162,11 +162,9 @@
                 "message": orderInfo.value.message
           }
         }   
-        console.log(orderInfo.value)
         isLoading.value = true
         try {
             const res = await submitOrder(data)
-            console.log(res)
             isLoading.value = false
             router.push(`/checkout/${res.orderId}`)
         } catch (error) {
@@ -178,12 +176,10 @@
         try {
             const res = await getCartInfo()
             isLoading.value = false
-            console.log(res)
             info.value = res.data
         } catch (error) {
             console.log(error)
         }
-        
     })
 
 </script>

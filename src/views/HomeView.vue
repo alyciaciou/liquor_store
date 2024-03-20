@@ -164,11 +164,3 @@
 
 </script>
 
-<style>
-  /* .swiper-button-next{
-    color: brown;
-  }
-  .swiper-button-prev{
-    color: brown;
-  } */
-</style>

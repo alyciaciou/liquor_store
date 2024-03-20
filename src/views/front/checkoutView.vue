@@ -76,7 +76,7 @@
                                 </tr>
                                 <tr class="border-b-2">
                                     <th class="p-2">付款狀態</th>
-                                    <td v-if="!info.is_paid" class="p-2">未付款</td>
+                                    <td v-if="!info.is_paid" class="p-2 text-red-600">未付款</td>
                                     <td v-else class="p-2">已付款</td>
                                 </tr>
                             </tbody>
@@ -88,7 +88,7 @@
                     確認付款
                 </button>
             
-                <router-link v-else to="/products">
+                <router-link v-else :to="{ path: '/products', query: { type: '威士忌' }}">
                     <button type="button" class="border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-[80%] mb-4">
                         繼續購物
                     </button>
@@ -122,7 +122,6 @@
         isLoading.value = true
         try {
             const res = await confirmPayment(route.params.oderId)
-            console.log(res)
             info.value.is_paid = true
             isLoading.value = false
         } catch (error) {
@@ -134,7 +133,6 @@
     onMounted( async () => {
         try {
             const res = await getOrder(route.params.oderId)
-            console.log(res)
             isLoading.value = false
             info.value = res.order
         } catch (error) {

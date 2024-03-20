@@ -33,11 +33,9 @@
     import NavBar from '@/components/NavBar.vue'
     import FooTer from '@/components/FooTer.vue'
 
-    import { useRouter } from 'vue-router'
     import { useCartNumStore } from '@/stores/counter'
-    import { ref, onMounted } from 'vue'
     
-    const router = useRouter()
     const cartStore = useCartNumStore()
+    cartStore.getCartNum()
 
 </script>

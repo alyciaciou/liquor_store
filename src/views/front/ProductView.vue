@@ -35,10 +35,7 @@
                             加入購物車
                         </button>
                     </div>
-
-        
                 </div>
-                
             </div>
         </main>
         
@@ -60,6 +57,7 @@
     import { getProductInfo } from '@/apis/productApi'
     import { addTocart } from '@/apis/cartApi'
 
+    //sweetalert2
     import Swal from 'sweetalert2'
 
     const route = useRoute()
@@ -87,7 +85,6 @@
                 qty: currentNum.value
             }
         }
-        console.log(info)
         isLoading.value = true
         try {
             const res = await addTocart(info) 
@@ -113,7 +110,6 @@
         } catch (error) {
             console.log(error)
         }
-        
     }
 
     onMounted( async () => {
@@ -125,7 +121,6 @@
         } catch (error) {
             console.log(error)
         }
-        
     })
 
 </script>

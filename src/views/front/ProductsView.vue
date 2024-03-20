@@ -100,9 +100,8 @@
     import { useCartNumStore } from '@/stores/counter'
     import { useAllProductsStore } from '@/stores/getProducts'
 
+    //sweetalert2
     import Swal from 'sweetalert2'
-
-    
 
     const route = useRoute()
     const router = useRouter()
@@ -137,6 +136,7 @@
 
     const brand = ref('全部')
     const clickedPage = ref(1)
+    const totalPages = ref(null)
     const changeBrand = async (e) => {
         brand.value = e.target.value
         if(e.target.value === '全部'){
@@ -149,14 +149,12 @@
             
         } else {
             const data = productsStore.allProducts.filter((item)=>{
-                console.log( item.brand === e.target.value)
                 return item.brand === e.target.value
             })
             productsList.value = data
             totalPages.value = Math.ceil(data.length / 10)
             clickedPage.value = 1
         }
-        
     }
 
     const queryProducts = async () => {
@@ -167,7 +165,6 @@
             products.value = res.products
             productsList.value = res.products
             totalPages.value = res.pagination.total_pages
-            console.log(res)
         } catch (error) {
             console.log(error)
         }
@@ -176,7 +173,7 @@
     watch(page, async (newPage) => {
         queryInfo.value.page = newPage
         await queryProducts()
-        window.scrollTo({top:0})
+        window.scrollTo({top:500})
         if(brand.value !== '全部'){
             productsList.value = products.value.filter((item)=>{
                 return item.brand === brand.value
@@ -184,13 +181,12 @@
         }else {
             productsList.value = products.value
         }
-        
     })
 
-    watch(selectedType, (newSelectedType) => {
+    watch(selectedType, async (newSelectedType) => {
         queryInfo.value.category = newSelectedType
         queryInfo.value.page = 1
-        queryProducts()
+        await queryProducts()
     })
 
     const addProduct = async (id)=>{
@@ -203,7 +199,6 @@
         isLoading.value = true
         try {
             const res = await addTocart(info) 
-            console.log(res)
             isLoading.value = false
             cartStore.getCartNum()
             const Toast = Swal.mixin({
@@ -225,10 +220,8 @@
         } catch (error) {
             console.log(error)
         }
-        
-
     }
-    const totalPages = ref(null)
+    
     
     const changePage = async (type, currentPage) => {
         if(type === 'firstPage'){
@@ -264,7 +257,6 @@
             products.value = res.products
             productsList.value = res.products
             totalPages.value = res.pagination.total_pages
-            console.log(res)
         } catch (error) {
             console.log(error)
         }

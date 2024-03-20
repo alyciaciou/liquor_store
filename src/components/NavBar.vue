@@ -1,7 +1,7 @@
 <template>
     <div class="mx-auto p-6 bg-black opacity-90 text-white sticky top-0 z-10 font-bold">
         <nav class="flex items-center justify-between">
-            <router-link to="/" class="cursor-pointer flex items-center duration-300 md:hover:text-2xl">
+            <router-link to="/" class="cursor-pointer flex items-center duration-300 hover:text-xl">
                 <img class="w-14 h-10 object-cover" src="https://storage.googleapis.com/vue-course-api.appspot.com/liquor_store/1709969615623.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=O9P3brrkqKpvUD6eQ8kOCh6rg3A19ONH5kShkNYDhn87lkb4t7%2BzpbKNmEM9xsUjxAFfvtGbzNjuaC0DiaWrFwL672FcjZ24zh2ogBF8RJ5FoN3Xj7e9VzbLqeWMBXQK264bsZvFSnEx0kar8bVeWKBTTaHp%2BqpeFOBnJy510Z%2BscElS0u%2FgbKXAOTWZI6WbUEl1uDGjiLrgPK8tZra0j%2BQxvozT23lm3QNemUBH4stAyS1w0%2BlKXV72o0P%2FvMvaI%2F8X%2FWf9qWf%2FjmFxOtUjs5AFsXy%2FdvM%2BkdiJhzvAyS09LP4gw6vD5HPse2C7H4axQuyRt2tlY25so1NLAZqvtw%3D%3D" alt="">
                 <p>Liquor Store</p>
             </router-link>
@@ -15,10 +15,10 @@
                 </div>
             </div>
             <ul class="sm:flex items-center justify-between hidden">
-                <li class="p-1 mr-2 cursor-pointer duration-300" :class="{'bg-slate-300':currentPage === '/about', 'text-black':currentPage === '/about', 'rounded-sm':currentPage === '/about'}">
+                <li class="p-1 mr-2 cursor-pointer duration-300 hover:text-xl" :class="{'bg-slate-300':currentPage === '/about', 'text-black':currentPage === '/about', 'rounded-sm':currentPage === '/about'}">
                     <router-link to="/about" >品牌故事</router-link>
                 </li>
-                <li class="p-1 mr-2 cursor-pointer duration-300" :class="{'bg-slate-300':currentPage === '/products', 'text-black':currentPage === '/products', 'rounded-sm':currentPage === '/products'}">
+                <li class="p-1 mr-2 cursor-pointer duration-300 hover:text-xl" :class="{'bg-slate-300':currentPage === '/products', 'text-black':currentPage === '/products', 'rounded-sm':currentPage === '/products'}">
                     <router-link :to="{ path: '/products', query: { type: '威士忌' }}">系列酒藏</router-link>
                 </li>
                 <li class="p-1 mr-2 hover:font-bold" :class="{'bg-slate-300':currentPage === '/cart', 'text-black':currentPage === '/cart', 'rounded-sm':currentPage === '/cart'}">
@@ -35,9 +35,9 @@
             </ul>
         </nav>
     </div>
-    <ul v-if="isSmall" class="flex flex-col items-center justify-between mx-auto p-6 bg-black opacity-90 text-white sticky top-0 z-10 font-bold">
+    <ul v-if="isSmall" class="flex flex-col items-center justify-between mx-auto p-6 bg-black opacity-90 text-white sticky top-[82px] z-10 font-bold">
         <li class="mb-2 cursor-pointer duration-300 hover:text-xl">
-            <router-link to="/about" class="">品牌故事</router-link>
+            <router-link to="/about">品牌故事</router-link>
         </li>
         <li class="mb-2 cursor-pointer duration-300 hover:text-xl">
             <router-link :to="{ path: '/products', query: { type: '威士忌' }}">系列酒藏</router-link>

@@ -62,7 +62,7 @@
             </table>
                 
             <div v-if="info !== null && info.carts.length !== 0" class="py-8 text-center flex flex-col md:flex-row items-center justify-between">
-                <router-link to="/products" class="border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-full md:w-[35%] lg:w-[20%] mb-4">
+                <router-link :to="{ path: '/products', query: { type: '威士忌' }}" class="border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-full md:w-[35%] lg:w-[20%] mb-4">
                     繼續購物
                 </router-link>
                 <router-link to="/order" class="border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-full md:w-[35%] lg:w-[20%] mb-4">
@@ -72,7 +72,7 @@
 
             <div v-if="info !== null && info.carts.length === 0" class="py-8 text-center">
                 <p class="p-2 text-3xl mb-8">尚未加入商品</p>
-                <router-link to="/products" class="inline-block border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-[60%] md:w-[25%] mb-4">
+                <router-link :to="{ path: '/products', query: { type: '威士忌' }}" class="inline-block border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-[60%] md:w-[25%] mb-4">
                     前往購物
                 </router-link>
             </div>
@@ -88,17 +88,15 @@
     import NavBar from '@/components/NavBar.vue'
     import FooTer from '@/components/FooTer.vue'
 
-    import { useRouter } from 'vue-router'
     import { useCartNumStore } from '@/stores/counter'
     import { ref, onMounted } from 'vue'
     
-
     //api
     import { getCartInfo, updateCartItem, deleteCartItem } from '@/apis/cartApi'
-
+    
+    //sweetalert2
     import Swal from 'sweetalert2'
 
-    const router = useRouter()
     const cartStore = useCartNumStore()
 
     const isLoading = ref(true)
@@ -119,12 +117,11 @@
         isChangeNum.value = true
         try {
             const res = await updateCartItem(item['id'], data)
-            console.log(res)
             const cartInfo = await getCartInfo()
             isChangeNum.value = false
             info.value = cartInfo.data
         } catch (error) {
-            console.log(item)
+            console.log(error)
         }
     }
 
@@ -140,7 +137,6 @@
         isChangeNum.value = true
         try {
             const res = await updateCartItem(item['id'], data)
-            console.log(res)
             const cartInfo = await getCartInfo()
             isChangeNum.value = false
             info.value = cartInfo.data
@@ -162,7 +158,6 @@
         isChangeNum.value = true
         try {
             const res = await updateCartItem(item['id'], data)
-            console.log(res)
             const cartInfo = await getCartInfo()
             isChangeNum.value = false
             info.value = cartInfo.data
@@ -192,7 +187,6 @@
             })
             try {
                 const res = await deleteCartItem(cartId)
-                console.log(res)
                 const cartInfo = await getCartInfo()
                 info.value = cartInfo.data
                 Swal.fire({
@@ -217,12 +211,10 @@
         try {
             const res = await getCartInfo()
             isLoading.value = false
-            console.log(res)
             info.value = res.data
         } catch (error) {
             console.log(error)
         }
-        
     })
 
 </script>
