@@ -12,7 +12,7 @@
 *  釀造過程
 *  熱銷系列
 
-#Technologies Used
+# Technologies Used
 *  Vue 3
 *  Pinia 
 *  VeeValidate
