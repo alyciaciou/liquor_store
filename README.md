@@ -5,7 +5,7 @@
 尋找美酒的最佳去處。從紅、白葡萄酒到威士忌，我們提供多樣選擇。品酒指南和專業建議，讓您品味生活的美好。讓我們一起品味生活的美好，一杯酒、一段故事。
 
 # GitHub Pages
-[https://alyciaciou.github.io/side-project-kkbox-demo/](https://alyciaciou.github.io/liquor_store/)
+[[https://alyciaciou.github.io/side-project-kkbox-demo/](https://alyciaciou.github.io/liquor_store/)](https://alyciaciou.github.io/liquor_store/)
 
 # Feature Introduction
 *  品酒指南
@@ -28,10 +28,12 @@
 [![GITHUB]( https://github.com/alyciaciou/s![alyciaciou github io_liquor_store_](https://github.com/alyciaciou/liquor_store/assets/107355737/82b34b54-f560-45b9-b0dc-bf63dab8ff83)](https://github.com/alyciaciou/liquor_store/blob/db5d7153bc4d514058e8a0b59b8822d3b7712966/src/images/alyciaciou.github.io_liquor_store_homepage.png)
 
 ## About Us Page
-https://github.com/alyciaciou/liquor_store/blob/db5d7153bc4d514058e8a0b59b8822d3b7712966/src/images/alyciaciou.github.io_liquor_store_%20about.png
+[![GITHUB]( https://github.com/alyciaciou/s![alyciaciou github io_liquor_store_](https://github.com/alyciaciou/liquor_store/blob/db5d7153bc4d514058e8a0b59b8822d3b7712966/src/images/alyciaciou.github.io_liquor_store_%20about.png)
+
 
 ## Product Page
-https://github.com/alyciaciou/liquor_store/blob/db5d7153bc4d514058e8a0b59b8822d3b7712966/src/images/alyciaciou.github.io_liquor_store_%20products.png
+[![GITHUB]( https://github.com/alyciaciou/s![alyciaciou github io_liquor_store_](https://github.com/alyciaciou/liquor_store/blob/db5d7153bc4d514058e8a0b59b8822d3b7712966/src/images/alyciaciou.github.io_liquor_store_%20products.png
+)
   
 ## Project Setup
 
