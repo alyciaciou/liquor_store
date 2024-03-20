@@ -53,5 +53,5 @@ npm run dev
 npm run build
 ```
 
-# 重要聲明
+# Important Disclaimer
 本作品內圖片、內容等，純粹為個人練習前端使用，不做任何商業用途。
