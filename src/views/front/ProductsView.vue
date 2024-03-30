@@ -32,7 +32,7 @@
                 <div v-for="item in productsList" :key="item.id" class="md:w-[30%] lg:w-[24%] w-[80%] mb-6">
                     <router-link :to="{ path: `/product/${ item.id }`, query: { type: item.category }}">
                         <div class="flex flex-col items-center justify-between p-2 bg-[#272626e8] rounded-lg duration-500 hover:bg-[#535252ab] hover:opacity-75 h-[400px] ">
-                            <img class="object-cover rounded-lg h-[200px] w-[150px]" :src="item.imageUrl" alt="">
+                            <img class="object-cover rounded-lg h-[200px] w-[150px]" :src="item.imageUrl" :alt="item.title">
                             <div>
                                 <p class="p-1">{{item.title}}</p>
                                 <p class="p-1">售價：NT$.{{ item.price }}  <del class="text-sm ml-2">原價：NT$.{{ item.origin_price }}</del></p>
@@ -50,7 +50,7 @@
                 </div>
             </div>
 
-            <div class="pagination py-8">
+            <div class="py-8">
                 <ul class="flex items-center justify-center">
                     <li>
                         <button @click="changePage('firstPage')" class="py-2 px-4 border-2 duration-500 hover:bg-white hover:text-black" type="button">
@@ -166,7 +166,6 @@
             productsList.value = res.products
             totalPages.value = res.pagination.total_pages
         } catch (error) {
-            console.log(error)
         }
     }
 
@@ -198,7 +197,7 @@
         }
         isLoading.value = true
         try {
-            const res = await addTocart(info) 
+            await addTocart(info) 
             isLoading.value = false
             cartStore.getCartNum()
             const Toast = Swal.mixin({
@@ -209,8 +208,8 @@
                 timerProgressBar: true,
                 width: '250',
                 didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
+                    toast.onmouseenter = Swal.stopTimer
+                    toast.onmouseleave = Swal.resumeTimer
                 }
             })
             Toast.fire({
@@ -218,7 +217,6 @@
                 title: "成功加入購物車"
             })
         } catch (error) {
-            console.log(error)
         }
     }
     
@@ -258,13 +256,11 @@
             productsList.value = res.products
             totalPages.value = res.pagination.total_pages
         } catch (error) {
-            console.log(error)
         }
 
         try {
             await productsStore.getProducts()
         } catch (error) {
-            console.log(error)
         }
     })
 

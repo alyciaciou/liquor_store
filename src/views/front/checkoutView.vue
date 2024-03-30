@@ -30,9 +30,9 @@
                                 </tr>
                             </thead>
                             <tbody class="text-center">
-                                <tr class="border-b-2" v-for="(item, index) in info.products">
+                                <tr class="border-b-2" v-for="(item, index) in info.products" :key="index">
                                     <td class="w-[25%] md:w-[15%]">
-                                        <img :src="item.product.imageUrl" alt="">
+                                        <img :src="item.product.imageUrl" :alt="item.product.title">
                                     </td>
                                     <td class="w-[25%]">{{ item.product.title }}</td>
                                     <td class="w-[25%]">{{ item.qty }}</td>
@@ -121,11 +121,10 @@
     const verifyPayment = async () => {
         isLoading.value = true
         try {
-            const res = await confirmPayment(route.params.oderId)
+            await confirmPayment(route.params.oderId)
             info.value.is_paid = true
             isLoading.value = false
         } catch (error) {
-            console.log(error)
         }
     }
 
@@ -136,7 +135,6 @@
             isLoading.value = false
             info.value = res.order
         } catch (error) {
-            console.log(error)
         }
         
     })

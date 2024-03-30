@@ -15,13 +15,13 @@
         </header>
         <main class="container mx-auto p-6 md:p-24 mb-6">
             <div class="py-8 text-center flex flex-col md:flex-row items-center justify-between">
-                <img class="object-cover block w-[70%] md:w-[48%] h-[50%] rounded-lg mb-6 md:mb-0" :src="info.imageUrl" alt="">
+                <img class="object-cover block w-[70%] md:w-[48%] h-[50%] rounded-lg mb-6 md:mb-0" :src="info.imageUrl" :alt="info.title">
 
                 <div class="w-[70%] md:w-[48%]">
                     <p class="text-4xl mb-10 font-bold">{{ info.title }}</p>
                     <p class="mb-2">{{ info.description }}</p>
                     <ul class="mb-2">
-                        <li v-for="item in content">{{ item }}</li>
+                        <li v-for="item in content" :key="item">{{ item }}</li>
                     </ul>
                     <p class="mb-8"><strong>售價:{{ info.price }}</strong> <del>原價:{{ info.origin_price }}</del></p>
 
@@ -89,7 +89,6 @@
         try {
             const res = await addTocart(info) 
             isLoading.value = false
-            console.log(res)
             cartStore.getCartNum()
             const Toast = Swal.mixin({
                 toast: true,
@@ -108,7 +107,6 @@
                 title: "成功加入購物車"
             })
         } catch (error) {
-            console.log(error)
         }
     }
 
@@ -119,7 +117,6 @@
             info.value = res.product
             content.value = info.value.content.split(';')
         } catch (error) {
-            console.log(error)
         }
     })
 

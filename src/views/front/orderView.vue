@@ -29,9 +29,9 @@
                             </tr>
                         </thead>
                         <tbody class="text-center">
-                            <tr class="border-b-2" v-for="(item, index) in info.carts">
+                            <tr class="border-b-2" v-for="(item, index) in info.carts" :key="index">
                                 <td class="w-[30%] p-4">
-                                    <img class="rounded-lg object-cover" :src="item.product.imageUrl" alt="">
+                                    <img class="rounded-lg object-cover" :src="item.product.imageUrl" :alt="item.product.title">
                                 </td>
                                 <td class="w-[30%] p-4">{{ item.product.title }}</td>
                                 <td class="w-[30%] p-4">{{ item.qty }}</td>
@@ -119,7 +119,7 @@
 
     //api
     import { getCartInfo,  } from '@/apis/cartApi'
-    import { submitOrder, getOrder } from '@/apis/order'
+    import { submitOrder } from '@/apis/order'
 
     //vee-validate
     import { Field as VField, Form as VForm, ErrorMessage, defineRule, configure } from 'vee-validate'
@@ -128,7 +128,6 @@
     import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
 
     Object.keys(AllRules).forEach((rule) => {
-        console.log(rule)
         defineRule(rule, AllRules[rule])
     })
     configure({
@@ -168,7 +167,6 @@
             isLoading.value = false
             router.push(`/checkout/${res.orderId}`)
         } catch (error) {
-            console.log(error)
         }
     }
 
@@ -178,7 +176,6 @@
             isLoading.value = false
             info.value = res.data
         } catch (error) {
-            console.log(error)
         }
     })
 

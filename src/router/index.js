@@ -33,12 +33,12 @@ const router = createRouter({
     {
       path: '/order',
       name: 'order',
-      component: () => import('@/views/front/orderView.vue')
+      component: () => import('@/views/front/OrderView.vue')
     },
     {
       path: '/checkout/:oderId',
       name: 'checkout',
-      component: () => import('@/views/front/checkoutView.vue')
+      component: () => import('@/views/front/CheckoutView.vue')
     },
     {
       path: '/:path(.*)*',
@@ -46,7 +46,7 @@ const router = createRouter({
       component: () => import("@/views/front/NotFound.vue"),
     },
   ],
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior() {
     return { top: 0 }
   },
 })

@@ -6,7 +6,7 @@
     <NavBar/>
     <header>
       <div class="relative flex flex-col items-center justify-center text-center opacity-85">
-        <img @load="handleImg" class="h-screen w-full object-cover object-center" src="https://storage.googleapis.com/vue-course-api.appspot.com/liquor_store/1709103904637.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=WIWlX1Ve23%2F8FCP%2BJR1SjtxZAmbkR1%2FGY04vgllWEU1vOxmRb1J6w%2FIUhRN9z7ed%2BSBejwk%2FkPZvsMKAIDzWDN6xqvA3PPp2doF1Uywtc5y%2B1ywUyk2fDBsx8RC2sS058mWBFep1UfFW%2FtF0BLxKtZy8Bsu5fG0LEIBiEShEATVc4Ht5UVCgHUoHtz6MufZvtA5Rsp95bMt5XtSizoHPXiGjUMqaZdqxGhAIuQYMlvWaN0Qt7A%2BCplRFxwYuq%2FC%2F3y8jRm7u7D8MtY5qFrWnaW2C0InH1BegZuabrek%2F6vzYOIV9PEFxNhLlYpclp%2BlTpOCxm%2BXVuZ0OmZmxJHArfQ%3D%3D" alt="">
+        <img @load="handleImg" class="h-screen w-full object-cover object-center" src="https://storage.googleapis.com/vue-course-api.appspot.com/liquor_store/1709103904637.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=WIWlX1Ve23%2F8FCP%2BJR1SjtxZAmbkR1%2FGY04vgllWEU1vOxmRb1J6w%2FIUhRN9z7ed%2BSBejwk%2FkPZvsMKAIDzWDN6xqvA3PPp2doF1Uywtc5y%2B1ywUyk2fDBsx8RC2sS058mWBFep1UfFW%2FtF0BLxKtZy8Bsu5fG0LEIBiEShEATVc4Ht5UVCgHUoHtz6MufZvtA5Rsp95bMt5XtSizoHPXiGjUMqaZdqxGhAIuQYMlvWaN0Qt7A%2BCplRFxwYuq%2FC%2F3y8jRm7u7D8MtY5qFrWnaW2C0InH1BegZuabrek%2F6vzYOIV9PEFxNhLlYpclp%2BlTpOCxm%2BXVuZ0OmZmxJHArfQ%3D%3D">
         <div class="absolute">
           <h1 class="text-6xl font-bold mb-4 leading-relaxed">
             <p class="pr-20">品味生活</p>
@@ -37,8 +37,8 @@
           >
             <swiper-slide v-for="item in liquorList" :key="item.type">
               <router-link :to="{ path: '/products', query: { type: item.type }}" class="duration-500 hover:text-lg bg-zinc-900 rounded-lg  hover:opacity-65 cursor-pointer">
-                <img class="object-cover rounded-t-lg" :src="item.url" alt="">
-                <p class="p-2 bg-[#535252f2] rounded-b-lg">{{item.type}}</p>
+                <img class="object-cover rounded-t-lg" :src="item.url" :alt="item.type">
+                <p class="p-2 bg-[#535252f2] rounded-b-lg">{{ item.type }}</p>
               </router-link>
             </swiper-slide>
           </swiper>
@@ -74,8 +74,8 @@
           <ul class=" flex flex-row items-center justify-between flex-wrap">
             <li v-for="item in liquorList.slice(0,4)" :key="item.type" class="hover:opacity-65 duration-500 hover:text-lg cursor-pointer md:w-[24%] w-[46%] mb-6">
               <router-link :to="{ path: '/products', query: { type: item.type }}">
-                <img class="object-cover rounded-t-lg  w-full" :src="item.url" alt="">
-                <p class="p-2 bg-[#535252f2] rounded-b-lg">{{item.type}}</p>
+                <img class="object-cover rounded-t-lg  w-full" :src="item.url" :alt="item.type">
+                <p class="p-2 bg-[#535252f2] rounded-b-lg">{{ item.type }}</p>
               </router-link>
             </li>
           </ul>
@@ -87,7 +87,7 @@
           <h3 class="text-4xl mb-10 font-bold">釀造過程</h3>
           <ul>
             <li class="flex-col items-center justify-center  md:flex md:flex-row  md:justify-between mb-12">
-              <img class="h-[400px] w-full md:w-[48%] object-cover rounded-lg inline-block" src="https://storage.googleapis.com/vue-course-api.appspot.com/liquor_store/1709968032516.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=BA%2F0SMViOzCnPde%2FqbnRinr7hCu44baYGEH1mYUgB3c09X9ZMESZkmqw1Reundgb%2FInARvQJRjYBm%2FOVKazv9ee9tpnWayJaGd4ZPTZxBKLHg7KfUOTVazLULOZbkPUZzf9eqSc0%2BMUuzF9uUz8UwrNEjTOligTnls9Mi4%2BkwPX0DZdX7ONMzZrQqZ%2B4wM8b%2B3qnQK9tFVGRdfOglqDV9jbr8xjklg3XN7VMHSlB4vX2nfiFLcV%2Fyc9To7mxEAtzfnz1wY3vM4pkfbIFQsan%2FjEykOM3AXKDAVq3HJb3OW4fH%2Fpetst6nafb%2Bmu8um5%2BamweriezOqRH47ev%2BJJXUg%3D%3D" alt="">
+              <img class="h-[400px] w-full md:w-[48%] object-cover rounded-lg inline-block" src="https://storage.googleapis.com/vue-course-api.appspot.com/liquor_store/1709968032516.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=BA%2F0SMViOzCnPde%2FqbnRinr7hCu44baYGEH1mYUgB3c09X9ZMESZkmqw1Reundgb%2FInARvQJRjYBm%2FOVKazv9ee9tpnWayJaGd4ZPTZxBKLHg7KfUOTVazLULOZbkPUZzf9eqSc0%2BMUuzF9uUz8UwrNEjTOligTnls9Mi4%2BkwPX0DZdX7ONMzZrQqZ%2B4wM8b%2B3qnQK9tFVGRdfOglqDV9jbr8xjklg3XN7VMHSlB4vX2nfiFLcV%2Fyc9To7mxEAtzfnz1wY3vM4pkfbIFQsan%2FjEykOM3AXKDAVq3HJb3OW4fH%2Fpetst6nafb%2Bmu8um5%2BamweriezOqRH47ev%2BJJXUg%3D%3D">
               <div class="md:w-[48%] w-full inline-block leading-relaxed mt-4 md:mt-0">
                 <h4 class="mb-2 text-xl">葡萄酒陳釀</h4>
                 <ul class="list-disc list-inside">
@@ -99,7 +99,7 @@
               </div>
             </li>
             <li class="flex-col items-center justify-center  md:flex md:flex-row-reverse  md:justify-between mb-12">
-              <img class="h-[400px] w-full md:w-[48%] object-cover rounded-lg inline-block" src="https://storage.googleapis.com/vue-course-api.appspot.com/liquor_store/1709967953555.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=YWzxuU%2FKe2vfBNgDh%2B9dbimkC8kF3JF%2FVtGLjyeqCYj15YcQ61OZNhkr4FqcZAnZ8r%2F%2BlL4V02CcrPs5FerBw%2Bu3wPBb%2FyRKlX1laevrtnjjfnx2WfDx%2FO6emZEBBUMuZt7xpO08a86Z03W2eKBTlFzK7fsKH0AmSIECvV3BjlXhwrPn4zLZjJYoQwj5xxog%2FAEVv5vKEJafyqISYsVvDjo%2BkniJnnO2yu7i1LR0NRbUR5svDNCgZ22ej2vS5NwKkZB9WXCYdAJYZvhideBi2ka5V%2FAcCcF3JWBhOcX%2FQnwkEm%2BPiZBRsdXVchylwXClXsYeUGzDUSHKCDrQel4jXA%3D%3D" alt="">
+              <img class="h-[400px] w-full md:w-[48%] object-cover rounded-lg inline-block" src="https://storage.googleapis.com/vue-course-api.appspot.com/liquor_store/1709967953555.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=YWzxuU%2FKe2vfBNgDh%2B9dbimkC8kF3JF%2FVtGLjyeqCYj15YcQ61OZNhkr4FqcZAnZ8r%2F%2BlL4V02CcrPs5FerBw%2Bu3wPBb%2FyRKlX1laevrtnjjfnx2WfDx%2FO6emZEBBUMuZt7xpO08a86Z03W2eKBTlFzK7fsKH0AmSIECvV3BjlXhwrPn4zLZjJYoQwj5xxog%2FAEVv5vKEJafyqISYsVvDjo%2BkniJnnO2yu7i1LR0NRbUR5svDNCgZ22ej2vS5NwKkZB9WXCYdAJYZvhideBi2ka5V%2FAcCcF3JWBhOcX%2FQnwkEm%2BPiZBRsdXVchylwXClXsYeUGzDUSHKCDrQel4jXA%3D%3D">
               <div class="md:w-[48%] w-full inline-block leading-relaxed mt-4 md:mt-0">
                 <h4 class="mb-2 text-xl">木桶陳釀</h4>
                 <ul class="list-disc list-inside">
