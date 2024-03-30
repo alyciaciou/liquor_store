@@ -33,12 +33,12 @@ const router = createRouter({
     {
       path: '/order',
       name: 'order',
-      component: () => import('@/views/front/OrderView.vue')
+      component: () => import('@/views/front/Order.vue')
     },
     {
       path: '/checkout/:oderId',
       name: 'checkout',
-      component: () => import('@/views/front/CheckoutView.vue')
+      component: () => import('@/views/front/Checkout.vue')
     },
     {
       path: '/:path(.*)*',
