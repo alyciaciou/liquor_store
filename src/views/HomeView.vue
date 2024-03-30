@@ -12,7 +12,8 @@
             <p class="pr-20">品味生活</p>
             <p class="pl-20">享受人生</p>
           </h1>
-          <router-link :to="{ path: '/products', query: { type: '威士忌' }}" class="text-3xl border-2 p-1 rounded duration-500 hover:bg-slate-100 hover:text-black cursor-pointer">立即前往商品頁 
+          <router-link :to="{ path: '/products', query: { type: '威士忌' }}" class="text-3xl border-2 p-1 rounded duration-500 hover:bg-slate-100 hover:text-black cursor-pointer">
+            立即前往商品頁 
           </router-link>
         </div>
       </div>
