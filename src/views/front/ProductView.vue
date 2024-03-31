@@ -51,15 +51,16 @@
 
     import { useRoute } from 'vue-router'
     import { useCartNumStore } from '@/stores/counter'
+    import { useSwalStore } from '@/stores/popSwalMsg'
     import { ref, onMounted } from 'vue'
 
     //api
     import { getProductInfo } from '@/apis/productApi'
     import { addTocart } from '@/apis/cartApi'
 
-    //sweetalert2
-    import Swal from 'sweetalert2'
+    
 
+    const swalMsg = useSwalStore()
     const route = useRoute()
     const cartStore = useCartNumStore()
     const isLoading = ref(true)
@@ -90,22 +91,7 @@
             const res = await addTocart(info) 
             isLoading.value = false
             cartStore.getCartNum()
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 1500,
-                timerProgressBar: true,
-                width: '250',
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            })
-            Toast.fire({
-                icon: "success",
-                title: "成功加入購物車"
-            })
+            swalMsg.successMsg()
         } catch (error) {
         }
     }

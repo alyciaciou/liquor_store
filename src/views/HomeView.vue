@@ -20,7 +20,7 @@
     </header>
     
     <main class="container mx-auto p-6 md:p-24 mb-6">
-      <section class="py-8">
+      <section class="py-12">
         <div class=" text-center">
           <h3 class="text-4xl mb-10 font-bold">Liquor Store</h3>
           <p class="leading-relaxed">
@@ -29,11 +29,11 @@
         </div>
       </section>
 
-      <section class="py-8">
+      <section class="py-12">
         <div class="text-center">
           <h3 class="text-4xl mb-10 font-bold ">系列商品</h3>
 
-          <swiper :navigation="true" :modules="navigation" class="mySwiper" :slidesPerView="4" :spaceBetween="20" :style="{'--swiper-navigation-color': '#fff', '--swiper-pagination-color': '#fff','--swiper-pagination-bullet-inactive-color': '#fff', '--swiper-pagination-bullet-inactive-opacity':'0.5'}" 
+          <swiper :navigation="true" :modules="navigation" class="mySwiper" :slidesPerView="4" :spaceBetween="20" :style="{'--swiper-navigation-color': '#fff', '--swiper-pagination-color': '#fff','--swiper-pagination-bullet-inactive-color': '#fff', '--swiper-pagination-bullet-inactive-opacity':'0.5', '--swiper-navigation-size': '50px'}" 
           :pagination="{ clickable: true}" :autoplay="{delay: 5000, disableOnInteraction: false}"
           >
             <swiper-slide v-for="item in liquorList" :key="item.type">
@@ -46,7 +46,7 @@
         </div>
       </section>
 
-      <section class="py-8">
+      <section class="py-12">
         <div class="text-center">
           <h3 class="text-4xl mb-10 font-bold">品酒指南</h3>
           <ul class="leading-relaxed list-decimal list-inside">
@@ -69,7 +69,7 @@
         </div>
       </section>
 
-      <section class="py-8">
+      <section class="py-12">
         <div class="text-center">
           <h3 class="text-4xl mb-10 font-bold">熱銷系列</h3>
           <ul class=" flex flex-row items-center justify-between flex-wrap">
@@ -83,7 +83,7 @@
         </div>
       </section>
 
-      <section class="py-8">
+      <section class="py-12">
         <div class="text-center">
           <h3 class="text-4xl mb-10 font-bold">釀造過程</h3>
           <ul>

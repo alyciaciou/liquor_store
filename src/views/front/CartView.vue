@@ -35,11 +35,11 @@
                         <td class="w-[20%] p-2">{{ item.product.price }}</td>
                         <td class="p-2 w-[24%]">
                             <div class="border-2 rounded-lg mb-4 md:mb-0 flex items-center">
-                                <button :disabled="item.qty === 1" @click="minusNum(item, index)" class="duration-500 hover:bg-white hover:text-black font-extrabold text-white py-2 rounded-l-lg w-[20%] text-center" type="button">-</button>
+                                <button :disabled="item.qty === 1 || isDisabled" @click="minusNum(item, index)" class="duration-500 hover:bg-white hover:text-black font-extrabold text-white py-2 rounded-l-lg w-[20%] text-center" type="button">-</button>
                                 <img v-if="isChangeNum && itemIndex === index" class="h-6 w-6 mx-auto " src="/Rolling-1s-150px.gif" alt="loading">
                                 <input @change="changeNum($event, item, index)" v-else :value="item.qty" type="text" class=" text-center bg-gray-800  p-2 w-[60%]">
                                 
-                                <button @click="addNum(item, index)" class="duration-500 hover:bg-white hover:text-black font-extrabold text-white py-2 rounded-r-lg w-[20%] text-center" type="button">+</button>
+                                <button :disabled="isDisabled" @click="addNum(item, index)" class="duration-500 hover:bg-white hover:text-black font-extrabold text-white py-2 rounded-r-lg w-[20%] text-center" type="button">+</button>
                             </div>
                         </td>
                         <td class="w-[20%] p-2">{{ item.total }}</td>
@@ -100,8 +100,10 @@
     const isChangeNum = ref(false)
     const itemIndex = ref('')
     const info = ref(null)
+    const isDisabled = ref(false)
 
     const addNum = async (item, index) => {
+        isDisabled.value = true
         itemIndex.value = index
         item['qty'] +=1
         const data = {
@@ -116,11 +118,13 @@
             const cartInfo = await getCartInfo()
             isChangeNum.value = false
             info.value = cartInfo.data
+            isDisabled.value = false
         } catch (error) {
         }
     }
 
     const minusNum = async (item, index) => {
+        isDisabled.value = true
         itemIndex.value = index
         item['qty'] === 1 ? null : item['qty'] -=1
         const data = {
@@ -135,6 +139,7 @@
             const cartInfo = await getCartInfo()
             isChangeNum.value = false
             info.value = cartInfo.data
+            isDisabled.value = false
         } catch (error) {
         }
     }
@@ -193,8 +198,6 @@
             }
           }
         })
-        
-        
     }
 
 

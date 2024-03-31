@@ -35,10 +35,11 @@
                             <img class="object-cover rounded-lg h-[200px] w-[150px]" :src="item.imageUrl" :alt="item.title">
                             <div>
                                 <p class="p-1">{{item.title}}</p>
-                                <p class="p-1">售價：NT$.{{ item.price }}  <del class="text-sm ml-2">原價：NT$.{{ item.origin_price }}</del></p>
+                                <p class="p-1">售價：NT$.{{ item.price }} </p>
+                                <del class="text-sm ml-2">原價：NT$.{{ item.origin_price }}</del>
                             </div>
                             <div class="flex items-center justify-between">
-                                <router-link :to="{ path: `/product/${ item.id }`, query: { type: item.category }}" class="block border-2  p-2 rounded-lg cursor-pointer duration-500 hover:bg-white hover:text-black">
+                                <router-link :to="{ path: `/product/${ item.id }`, query: { type: item.category }}" class="block border-2 p-2 rounded-lg cursor-pointer duration-500 hover:bg-white hover:text-black">
                                     瞭解更多
                                 </router-link>
                                 <button @click.prevent="addProduct(item.id)" type="button" class=" border-2 p-2 rounded-lg cursor-pointer duration-500 hover:bg-white hover:text-black">
@@ -99,14 +100,15 @@
     import { useRoute, useRouter } from 'vue-router'
     import { useCartNumStore } from '@/stores/counter'
     import { useAllProductsStore } from '@/stores/getProducts'
+    import { useSwalStore } from '@/stores/popSwalMsg'
 
-    //sweetalert2
-    import Swal from 'sweetalert2'
+
 
     const route = useRoute()
     const router = useRouter()
     const cartStore = useCartNumStore()
     const productsStore = useAllProductsStore()
+    const swalMsg = useSwalStore()
     
     const isLoading = ref(true)
     const products = ref(null)
@@ -200,22 +202,7 @@
             await addTocart(info) 
             isLoading.value = false
             cartStore.getCartNum()
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 1500,
-                timerProgressBar: true,
-                width: '250',
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer
-                    toast.onmouseleave = Swal.resumeTimer
-                }
-            })
-            Toast.fire({
-                icon: "success",
-                title: "成功加入購物車"
-            })
+            swalMsg.successMsg()
         } catch (error) {
         }
     }
