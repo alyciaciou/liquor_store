@@ -1,6 +1,9 @@
 import { defineStore } from 'pinia'
 import Swal from 'sweetalert2'
+import { useCartNumStore } from '@/stores/counter'
+import { getCartInfo, deleteCartItem } from '@/apis/cartApi'
 
+const cartStore = useCartNumStore()
 
 export const useSwalStore = defineStore('Swal', () => {
   const successMsg = () => {
@@ -22,5 +25,41 @@ export const useSwalStore = defineStore('Swal', () => {
     })    
   }
 
-  return { successMsg }
+  const deleteMsg = (info, cartId) => {
+    Swal.fire({
+      title: "確定刪除？",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "確定",
+      cancelButtonText: "取消",
+      
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+            title: "正在刪除",
+            didOpen: () => {
+                Swal.showLoading()
+            },
+        })
+        try {
+            await deleteCartItem(cartId)
+            const cartInfo = await getCartInfo()
+            info.value = cartInfo.data
+            Swal.fire({
+                title: "刪除成功",
+                icon: "success",
+                didOpen: () => {
+                    Swal.hideLoading()
+                },
+            })
+            cartStore.getCartNum()
+        } catch (error) {
+        }
+      }
+    })
+  }
+
+  return { successMsg, deleteMsg }
 })
