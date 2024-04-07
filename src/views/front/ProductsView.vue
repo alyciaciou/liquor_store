@@ -17,6 +17,7 @@
             <ul class="py-8 text-center flex items-center justify-center w-full">
                 <li class="w-[40%] ">
                     <select @change="changeType" class="bg-[#535252f2] w-[80%] md:w-[50%] p-2 rounded-lg">
+                        <option selected value="全部">全部</option>
                         <option :selected="selectedType === item" v-for="item in type" :key="item" :value="item">{{ item }}</option>
                     </select>
                 </li>
@@ -28,18 +29,18 @@
                 </li>
             </ul>
 
-            <div class="py-8 text-center flex items-center justify-between w-full flex-col md:flex md:flex-row flex-wrap">
-                <div v-for="item in productsList" :key="item.id" class="md:w-[30%] lg:w-[24%] w-[80%] mb-6">
+            <div class="py-8 text-center w-full flex items-center justify-start  flex-col md:flex md:flex-row flex-wrap">
+                <div v-for="item in productsList" :key="item.id" class="md:w-[28%] lg:w-[24%] w-[80%] mb-6 mr-2 ">
                     <router-link :to="{ path: `/product/${ item.id }`, query: { type: item.category }}">
                         <div class="flex flex-col items-center justify-between p-2 bg-[#272626e8] rounded-lg duration-500 hover:bg-[#535252ab] hover:opacity-75 h-[400px] ">
                             <img class="object-cover rounded-lg h-[200px] w-[150px]" :src="item.imageUrl" :alt="item.title">
                             <div>
                                 <p class="p-1">{{item.title}}</p>
-                                <p class="p-1">售價：NT$.{{ item.price }} </p>
-                                <del class="text-sm ml-2">原價：NT$.{{ item.origin_price }}</del>
+                                <p class="p-1">售價：NT${{ item.price }} </p>
+                                <del class="text-sm ml-2">原價：NT${{ item.origin_price }}</del>
                             </div>
                             <div class="flex items-center justify-between">
-                                <router-link :to="{ path: `/product/${ item.id }`, query: { type: item.category }}" class="block border-2 p-2 rounded-lg cursor-pointer duration-500 hover:bg-white hover:text-black">
+                                <router-link :to="{ path: `/product/${ item.id }`, query: { type: item.category }}" class="block border-2 p-2 rounded-lg cursor-pointer duration-500 hover:bg-white hover:text-black mr-2">
                                     瞭解更多
                                 </router-link>
                                 <button @click.prevent="addProduct(item.id)" type="button" class=" border-2 p-2 rounded-lg cursor-pointer duration-500 hover:bg-white hover:text-black">
@@ -120,6 +121,7 @@
         '氣泡酒':['羅卡酒莊', 'TOSO', '米娜多'], 
         '利口':['安丘瑞耶斯', '吉拿', '芙內', '義大利庫司', '貝禮詩', 'MB'], 
         '白蘭地':['皮耶費朗', '軒尼詩'], 
+        '全部':['麥卡倫', '蘇格登', '亞伯樂', '布萊迪', '漢彌根', '樂花園', '富飛', '酩悅', '路易侯德爾', '凱歌', '保羅傑', '杜瓦樂華', '羅卡酒莊', 'TOSO', '米娜多', '安丘瑞耶斯', '吉拿', '芙內', '義大利庫司', '貝禮詩', 'MB', '皮耶費朗', '軒尼詩'] 
     }
     
     const type = ['威士忌', '葡萄酒', '香檳', '氣泡酒', '利口', '白蘭地' ]
@@ -172,22 +174,42 @@
     }
 
     watch(page, async (newPage) => {
-        queryInfo.value.page = newPage
-        await queryProducts()
         window.scrollTo({top:500})
-        if(brand.value !== '全部'){
-            productsList.value = products.value.filter((item)=>{
-                return item.brand === brand.value
-            })
-        }else {
-            productsList.value = products.value
+        if(selectedType.value !== '全部'){
+            queryInfo.value.page = newPage
+            await queryProducts()
+            if(brand.value !== '全部'){
+                productsList.value = products.value.filter((item)=>{
+                    return item.brand === brand.value
+                })
+            }else {
+                productsList.value = products.value
+            }
+        } else {
+            productsList.value = getPageData(page)
         }
+        
     })
 
+    const getPageData = (page) => {
+      const startIndex = (page.value - 1) * 10
+      const endIndex = startIndex + 10
+      return productsStore.allProducts.slice(startIndex, endIndex)
+    }
+
     watch(selectedType, async (newSelectedType) => {
-        queryInfo.value.category = newSelectedType
-        queryInfo.value.page = 1
-        await queryProducts()
+        if(newSelectedType === '全部'){
+            products.value = productsStore.allProducts
+            // page.value = 1
+            productsList.value = getPageData(page)
+            
+            totalPages.value = Math.ceil( productsStore.allProducts.length / 10)
+        }else{
+            queryInfo.value.category = newSelectedType
+            queryInfo.value.page = 1
+            await queryProducts()
+        }
+        
     })
 
     const addProduct = async (id)=>{
@@ -234,10 +256,8 @@
     })
 
     onMounted( async () => {
-        selectedType.value = route.query.type 
-        queryInfo.value.category = selectedType.value
         try {
-            const res = await getProducts(queryInfo.value)
+            await productsStore.getProducts()
             isLoading.value = false
             products.value = res.products
             productsList.value = res.products
@@ -245,10 +265,18 @@
         } catch (error) {
         }
 
-        try {
-            await productsStore.getProducts()
-        } catch (error) {
-        }
+        selectedType.value = route.query.type 
+        // queryInfo.value.category = selectedType.value
+        // try {
+        //     const res = await getProducts(queryInfo.value)
+        //     isLoading.value = false
+        //     products.value = res.products
+        //     productsList.value = res.products
+        //     totalPages.value = res.pagination.total_pages
+        // } catch (error) {
+        // }
+
+        
     })
 
 </script>

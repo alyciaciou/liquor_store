@@ -23,7 +23,7 @@
                     <ul class="mb-2">
                         <li v-for="item in content" :key="item">{{ item }}</li>
                     </ul>
-                    <p class="mb-8"><strong>售價:{{ info.price }}</strong> <del>原價:{{ info.origin_price }}</del></p>
+                    <p class="mb-8"><strong>售價:NT${{ info.price }}</strong> <del>原價:NT${{ info.origin_price }}</del></p>
 
                     <div class="cart-item flex flex-col md:flex-row justify-center md:justify-between items-center border-b pb-4">
                         <div class="w-[60%] md:w-[40%] border-2 rounded-lg mb-4 md:mb-0">
