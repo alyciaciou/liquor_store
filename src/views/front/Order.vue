@@ -35,12 +35,12 @@
                                 </td>
                                 <td class="w-[30%] p-4">{{ item.product.title }}</td>
                                 <td class="w-[30%] p-4">{{ item.qty }}</td>
-                                <td class="w-[20%] p-4">{{ item.total }}</td>
+                                <td class="w-[20%] p-4">NT${{ item.total }}</td>
                             </tr>
                         </tbody>
                         <tfoot class="text-right">
                             <tr>
-                                <td colspan="4" class="p-4 text-2xl"><strong>總計：</strong>{{ info. final_total}}</td>
+                                <td colspan="4" class="p-4 text-2xl"><strong>總計：</strong>NT${{ info. final_total}}</td>
                             </tr>
                         </tfoot>
                     </table>

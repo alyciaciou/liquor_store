@@ -36,18 +36,18 @@
                                     </td>
                                     <td class="w-[25%]">{{ item.product.title }}</td>
                                     <td class="w-[25%]">{{ item.qty }}</td>
-                                    <td class="w-[25%]">{{ item.total }}</td>
+                                    <td class="w-[25%]">NT${{ item.total }}</td>
                                 </tr>
                             </tbody>
                             <tfoot class="text-right">
                                 <tr>
-                                    <td colspan="4" class="p-4 text-2xl"><strong>總計：</strong>{{ info.total}}</td>
+                                    <td colspan="4" class="p-4 text-2xl"><strong>總計：</strong>NT${{ info.total}}</td>
                                 </tr>
                             </tfoot>
                         </table>
                     </div>
 
-                    <div class="w-[80%]">
+                    <div class="w-[80%] flex justify-center">
                         <table class="border-t-2 w-full">
                             <tbody v-if="info" class="text-center p-2">
                                 <tr class="border-b-2">
@@ -84,7 +84,7 @@
                     </div>
                 </div>
             
-                <button v-if="!info.is_paid" @click="verifyPayment" type="button" class="border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-[80%] mb-4">
+                <button v-if="!info.is_paid" @click="verifyPayment" type="button" class="border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-[60%] mb-4">
                     確認付款
                 </button>
             
