@@ -47,7 +47,7 @@
                         </table>
                     </div>
 
-                    <div class="w-[80%] flex justify-center">
+                    <div class="w-[80%] md:w-[60%] flex justify-center">
                         <table class="border-t-2 w-full">
                             <tbody v-if="info" class="text-center p-2">
                                 <tr class="border-b-2">
@@ -89,7 +89,7 @@
                 </button>
             
                 <router-link v-else :to="{ path: '/products', query: { type: '威士忌' }}">
-                    <button type="button" class="border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-[80%] mb-4">
+                    <button type="button" class="border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-[60%] mb-4">
                         繼續購物
                     </button>
                 </router-link>
