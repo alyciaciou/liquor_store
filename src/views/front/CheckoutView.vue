@@ -125,6 +125,7 @@
             info.value.is_paid = true
             isLoading.value = false
         } catch (error) {
+
         }
     }
 
@@ -135,6 +136,7 @@
             isLoading.value = false
             info.value = res.order
         } catch (error) {
+            
         }
         
     })

@@ -167,6 +167,7 @@
             isLoading.value = false
             router.push(`/checkout/${res.orderId}`)
         } catch (error) {
+
         }
     }
 
@@ -176,6 +177,7 @@
             isLoading.value = false
             info.value = res.data
         } catch (error) {
+            
         }
     })
 

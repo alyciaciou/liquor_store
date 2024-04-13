@@ -55,7 +55,8 @@ export const useSwalStore = defineStore('Swal', () => {
                 },
             })
             cartStore.getCartNum()
-        } catch (error) {
+        } catch ( error ) {
+
         }
       }
     })

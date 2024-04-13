@@ -17,12 +17,11 @@
             <ul class="py-8 text-center flex items-center justify-center w-full">
                 <li class="w-[40%] ">
                     <select @change="changeType" class="bg-[#535252f2] w-[80%] md:w-[50%] p-2 rounded-lg">
-                        <option selected value="全部">全部</option>
                         <option :selected="selectedType === item" v-for="item in type" :key="item" :value="item">{{ item }}</option>
                     </select>
                 </li>
                 <li class="w-[40%] ">
-                    <select @change="changeBrand" class="bg-[#535252f2] w-[80%] md:w-[50%] p-2 rounded-lg">
+                    <select v-model="brand" @change="changeBrand" class="bg-[#535252f2] w-[80%] md:w-[50%] p-2 rounded-lg">
                         <option selected value="全部">全部</option>
                         <option v-for="item in selectType[selectedType]" :key="item" :value="item">{{ item }}</option>
                     </select>
@@ -124,7 +123,7 @@
         '全部':['麥卡倫', '蘇格登', '亞伯樂', '布萊迪', '漢彌根', '樂花園', '富飛', '酩悅', '路易侯德爾', '凱歌', '保羅傑', '杜瓦樂華', '羅卡酒莊', 'TOSO', '米娜多', '安丘瑞耶斯', '吉拿', '芙內', '義大利庫司', '貝禮詩', 'MB', '皮耶費朗', '軒尼詩'] 
     }
     
-    const type = ['威士忌', '葡萄酒', '香檳', '氣泡酒', '利口', '白蘭地' ]
+    const type = ['全部','威士忌', '葡萄酒', '香檳', '氣泡酒', '利口', '白蘭地' ]
     const selectedType = ref('')
     const page = ref(1)
     const queryInfo = ref(
@@ -144,12 +143,19 @@
     const changeBrand = async (e) => {
         brand.value = e.target.value
         if(e.target.value === '全部'){
-            if(page.value === 1){
-                await queryProducts()
+            if(selectedType.value !== '全部'){
+                 if(page.value === 1){
+                    await queryProducts()
+                }else{
+                    page.value = 1
+                }
             }else{
                 page.value = 1
-                clickedPage.value = page.value
+                products.value = productsStore.allProducts
+                productsList.value = getPageData(page)
+                totalPages.value = Math.ceil( productsStore.allProducts.length / 10)
             }
+           
             
         } else {
             const data = productsStore.allProducts.filter((item)=>{
@@ -170,6 +176,7 @@
             productsList.value = res.products
             totalPages.value = res.pagination.total_pages
         } catch (error) {
+
         }
     }
 
@@ -198,12 +205,16 @@
     }
 
     watch(selectedType, async (newSelectedType) => {
+        console.log(brand.value)
+        page.value = 1
+        clickedPage.value = 1
+        brand.value = '全部'
+        console.log(brand.value)
         if(newSelectedType === '全部'){
             products.value = productsStore.allProducts
-            // page.value = 1
             productsList.value = getPageData(page)
-            
             totalPages.value = Math.ceil( productsStore.allProducts.length / 10)
+            
         }else{
             queryInfo.value.category = newSelectedType
             queryInfo.value.page = 1
@@ -226,6 +237,7 @@
             cartStore.getCartNum()
             swalMsg.successMsg()
         } catch (error) {
+
         }
     }
     
@@ -259,10 +271,9 @@
         try {
             await productsStore.getProducts()
             isLoading.value = false
-            products.value = res.products
-            productsList.value = res.products
-            totalPages.value = res.pagination.total_pages
+
         } catch (error) {
+            
         }
 
         selectedType.value = route.query.type 

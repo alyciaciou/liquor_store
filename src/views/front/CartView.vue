@@ -84,7 +84,6 @@
     import NavBar from '@/components/NavBar.vue'
     import FooTer from '@/components/FooTer.vue'
 
-    import { useCartNumStore } from '@/stores/counter'
     import { useSwalStore } from '@/stores/popSwalMsg'
     import { ref, onMounted } from 'vue'
     
@@ -92,7 +91,6 @@
     import { getCartInfo, updateCartItem } from '@/apis/cartApi'
     
 
-    const cartStore = useCartNumStore()
     const swalMsg = useSwalStore()
 
     const isLoading = ref(true)
@@ -119,6 +117,7 @@
             info.value = cartInfo.data
             isDisabled.value = false
         } catch (error) {
+
         }
     }
 
@@ -140,6 +139,7 @@
             info.value = cartInfo.data
             isDisabled.value = false
         } catch (error) {
+
         }
     }
 
@@ -159,6 +159,7 @@
             isChangeNum.value = false
             info.value = cartInfo.data
         } catch (error) {
+
         }
 
     }
@@ -174,6 +175,7 @@
             isLoading.value = false
             info.value = res.data
         } catch (error) {
+            
         }
     })
 

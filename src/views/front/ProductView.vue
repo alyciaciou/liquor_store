@@ -56,7 +56,6 @@
 
     //api
     import { getProductInfo } from '@/apis/productApi'
-    import { addTocart } from '@/apis/cartApi'
 
     
 
@@ -80,19 +79,13 @@
 
     const addProduct = async () => {
         currentNum.value = parseInt(currentNum.value)
-        const info = {
-            data:{
-                product_id: route.params.id,
-                qty: currentNum.value
-            }
-        }
         isLoading.value = true
         try {
-            const res = await addTocart(info) 
             isLoading.value = false
             cartStore.getCartNum()
             swalMsg.successMsg()
         } catch (error) {
+
         }
     }
 
@@ -103,6 +96,7 @@
             info.value = res.product
             content.value = info.value.content.split(';')
         } catch (error) {
+
         }
     })
 
