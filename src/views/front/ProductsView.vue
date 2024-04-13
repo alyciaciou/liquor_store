@@ -52,7 +52,7 @@
             </div>
 
             <div class="py-8">
-                <ul class="flex items-center justify-center">
+                <ul class="flex flex-wrap items-center justify-center">
                     <li>
                         <button @click="changePage('firstPage')" class="py-2 px-4 border-2 duration-500 hover:bg-white hover:text-black" type="button">
                             <<
