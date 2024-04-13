@@ -205,11 +205,9 @@
     }
 
     watch(selectedType, async (newSelectedType) => {
-        console.log(brand.value)
         page.value = 1
         clickedPage.value = 1
         brand.value = '全部'
-        console.log(brand.value)
         if(newSelectedType === '全部'){
             products.value = productsStore.allProducts
             productsList.value = getPageData(page)
