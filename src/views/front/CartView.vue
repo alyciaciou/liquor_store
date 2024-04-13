@@ -68,7 +68,7 @@
 
             <div v-if="info !== null && info.carts.length === 0" class="py-8 text-center">
                 <p class="p-2 text-3xl mb-8">尚未加入商品</p>
-                <router-link :to="{ path: '/products', query: { type: '威士忌' }}" class="inline-block border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-[60%] md:w-[25%] mb-4">
+                <router-link :to="{ path: '/products', query: { type: '全部' }}" class="inline-block border-2 p-2 rounded-lg duration-500 hover:bg-white hover:text-black w-[60%] md:w-[25%] mb-4">
                     前往購物
                 </router-link>
             </div>
