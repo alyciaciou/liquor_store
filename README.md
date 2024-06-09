@@ -25,15 +25,15 @@ https://alyciaciou.github.io/liquor_store/
 
 # Website Navigation
 ## Homepage
-[![GITHUB](https://github.com/alyciaciou/liquor_store/assets/107355737/82b34b54-f560-45b9-b0dc-bf63dab8ff83)](https://github.com/alyciaciou/liquor_store/blob/db5d7153bc4d514058e8a0b59b8822d3b7712966/src/images/alyciaciou.github.io_liquor_store_homepage.png)
+[![GITHUB](https://raw.githubusercontent.com/alyciaciou/liquor_store/main/src/images/alyciaciou.github.io_liquor_store_homepage.png)](https://github.com/alyciaciou/liquor_store/blob/main/src/images/alyciaciou.github.io_liquor_store_homepage.png)
 
 
 ## About Us Page
-[![GITHUB](https://github.com/alyciaciou/liquor_store/assets/107355737/82b34b54-f560-45b9-b0dc-bf63dab8ff83)](https://github.com/alyciaciou/liquor_store/blob/c53f79601cb94254235544ebe87e4d8b95f828d8/src/images/alyciaciou.github.io_liquor_store_%20about.png)
+[![GITHUB](https://raw.githubusercontent.com/alyciaciou/liquor_store/main/src/images/alyciaciou.github.io_liquor_store_about.png)](https://github.com/alyciaciou/liquor_store/blob/main/src/images/alyciaciou.github.io_liquor_store_about.png)
 
 
 ## Product Page
-[![GITHUB](https://github.com/alyciaciou/liquor_store/assets/107355737/82b34b54-f560-45b9-b0dc-bf63dab8ff83)](https://github.com/alyciaciou/liquor_store/blob/c53f79601cb94254235544ebe87e4d8b95f828d8/src/images/alyciaciou.github.io_liquor_store_%20products.png)
+[![GITHUB](https://raw.githubusercontent.com/alyciaciou/liquor_store/main/src/images/alyciaciou.github.io_liquor_store_products.png)](https://github.com/alyciaciou/liquor_store/blob/main/src/images/alyciaciou.github.io_liquor_store_products.png)
 
 
 ## Project Setup
