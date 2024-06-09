@@ -29,11 +29,11 @@ https://alyciaciou.github.io/liquor_store/
 
 
 ## About Us Page
-[![GITHUB](https://raw.githubusercontent.com/alyciaciou/liquor_store/main/src/images/alyciaciou.github.io_liquor_store_about.png)](https://github.com/alyciaciou/liquor_store/blob/main/src/images/alyciaciou.github.io_liquor_store_ about.png)
+[![GITHUB](https://raw.githubusercontent.com/alyciaciou/liquor_store/main/src/images/alyciaciou.github.io_liquor_store_about.png)](https://github.com/alyciaciou/liquor_store/blob/main/src/images/alyciaciou.github.io_liquor_store_about.png)
 
 
 ## Product Page
-[![GITHUB](https://raw.githubusercontent.com/alyciaciou/liquor_store/main/src/images/alyciaciou.github.io_liquor_store_products.png)](https://github.com/alyciaciou/liquor_store/blob/main/src/images/alyciaciou.github.io_liquor_store_ products.png)
+[![GITHUB](https://raw.githubusercontent.com/alyciaciou/liquor_store/main/src/images/alyciaciou.github.io_liquor_store_products.png)](https://github.com/alyciaciou/liquor_store/blob/main/src/images/alyciaciou.github.io_liquor_store_products.png)
 
 
 ## Project Setup
