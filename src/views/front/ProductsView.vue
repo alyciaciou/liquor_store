@@ -158,13 +158,13 @@ import { onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useCartNumStore } from '@/stores/counter'
 import { useAllProductsStore } from '@/stores/getProducts'
-import { useSwalStore } from '@/stores/popSwalMsg'
+import { useSweetAlert } from '@/composables/useSweetAlert'
 
 const route = useRoute()
 const router = useRouter()
 const cartStore = useCartNumStore()
 const productsStore = useAllProductsStore()
-const swalMsg = useSwalStore()
+const { successMsg } = useSweetAlert()
 
 const isLoading = ref(true)
 const products = ref(null)
@@ -304,7 +304,7 @@ const addProduct = async (id) => {
     await addTocart(info)
     isLoading.value = false
     cartStore.getCartNum()
-    swalMsg.successMsg()
+    successMsg()
   } catch (error) {}
 }
 

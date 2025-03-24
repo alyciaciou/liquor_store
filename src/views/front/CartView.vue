@@ -140,13 +140,13 @@
 import NavBar from '@/components/NavBar.vue'
 import FooTer from '@/components/FooTer.vue'
 
-import { useSwalStore } from '@/stores/popSwalMsg'
+import { useSweetAlert } from '@/composables/useSweetAlert'
 import { ref, onMounted, watch } from 'vue'
 
 //api
 import { getCartInfo, updateCartItem } from '@/apis/cartApi'
 
-const swalMsg = useSwalStore()
+const { deleteMsg } = useSweetAlert()
 
 const isLoading = ref(true)
 const isChangeNum = ref(false)
@@ -221,7 +221,7 @@ const changeNum = async (e, item, index) => {
 }
 
 const deleteItem = (cartId) => {
-  swalMsg.deleteMsg(info, cartId)
+  deleteMsg(info, cartId)
 }
 
 onMounted(async () => {

@@ -80,14 +80,14 @@ import FooTer from '@/components/FooTer.vue'
 
 import { useRoute } from 'vue-router'
 import { useCartNumStore } from '@/stores/counter'
-import { useSwalStore } from '@/stores/popSwalMsg'
+import { useSweetAlert } from '@/composables/useSweetAlert'
 import { ref, onMounted, watch } from 'vue'
 
 //api
 import { getProductInfo } from '@/apis/productApi'
 import { addTocart } from '@/apis/cartApi'
 
-const swalMsg = useSwalStore()
+const { successMsg } = useSweetAlert()
 const route = useRoute()
 const cartStore = useCartNumStore()
 const isLoading = ref(true)
@@ -122,7 +122,7 @@ const addProduct = async () => {
     await addTocart(info)
     isLoading.value = false
     cartStore.getCartNum()
-    swalMsg.successMsg()
+    successMsg()
   } catch (error) {}
 }
 
